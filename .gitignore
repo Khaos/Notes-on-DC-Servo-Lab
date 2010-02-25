@@ -1,2 +1,5 @@
 tmp
 recycle
+Fig/*.log
+Fig/DJACS220NotesFig.*
+!Fig/DJACS220NotesFig.tex

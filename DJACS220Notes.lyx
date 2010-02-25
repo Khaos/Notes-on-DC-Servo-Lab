@@ -127,6 +127,22 @@ Introduction
 Vocabulary
 \end_layout
 
+\begin_layout Itemize
+tacho
+\end_layout
+
+\begin_layout Itemize
+decay
+\end_layout
+
+\begin_layout Itemize
+armature
+\end_layout
+
+\begin_layout Itemize
+attenuator
+\end_layout
+
 \begin_layout Section
 Notes
 \end_layout
@@ -379,117 +395,8 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}[every node/.style={font=
-\backslash
-small}]
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleSum{minimum size=1em, fill=black!50, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbEntree{input}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbComp*[4]{comp}{input}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{input}{comp}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbNomLien[0.8]{input}{$V_a$}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbBloc[3]{system}{$
-\backslash
-dfrac{K}{1+sT}$}{comp}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier[$e$]{comp}{system}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbSortie[4]{output}{system}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{system}{output}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbNomLien[0.8]{output}{$
-\backslash
-omega$}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbRenvoi{system-output}{comp}{}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
+\begin_inset Graphics
+	filename Fig/Motor_Model.pdf
 
 \end_inset
 
@@ -530,7 +437,7 @@ G_{M}(s) & = & \dfrac{\omega(s)}{V_{a}(s)}=\dfrac{\dfrac{K}{1+sT}}{1+\dfrac{K}{1
 \end_inset
 
 where 
-\begin_inset Formula $K_{m}=K/(K+1)$
+\begin_inset Formula $K_{M}=K/(K+1)$
 \end_inset
 
  and 
@@ -568,140 +475,8 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}[every node/.style={font=
-\backslash
-small}]
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleSum{minimum size=1em, fill=black!50, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbEntree{input}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbComp*[4]{comp}{input}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{input}{comp}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbNomLien[0.8]{input}{$
-\backslash
-theta_i$}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleBloc{minimum width=3em, fill=red!20, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbBloc[3]{gain}{$K_a$}{comp}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier[$e$]{comp}{gain}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbBloc[3]{system}{$
-\backslash
-dfrac{K}{s(1+sT)}$}{gain}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{gain}{system}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbSortie[4]{output}{system}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{system}{output}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbNomLien[0.8]{output}{$
-\backslash
-theta_o$}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbRenvoi{system-output}{comp}{}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
+\begin_inset Graphics
+	filename Fig/Position_Feedback.pdf
 
 \end_inset
 
@@ -1025,191 +800,8 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}[every node/.style={font=
-\backslash
-small}]
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleSum{minimum size=1em, fill=black!50, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbEntree{input}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbCompSum*[4]{comp}{input}{-}{-}{+}{}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{input}{comp}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbNomLien[0.8]{input}{$
-\backslash
-theta_i$}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleBloc{minimum width=3em, fill=red!20, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbBloc[3]{gain}{$K_a$}{comp}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier[$e$]{comp}{gain}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbBloc[3]{system}{$
-\backslash
-dfrac{K}{(1+sT)}$}{gain}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{gain}{system}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbBloc[3]{integral}{$
-\backslash
-dfrac{1}{s}$}{system}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{system}{integral}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbSortie[4]{output}{integral}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbRelier{integral}{output}
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\backslash
-sbNomLien[0.8]{output}{$
-\backslash
-theta_o$}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbRenvoi{integral-output}{comp}{}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbDecaleNoeudy[-4]{system}{VfRef}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbStyleBloc{minimum width=3em, fill=red!20, thick}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbBlocr[3]{Vf}{$K_f$}{VfRef}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbRelieryx{system-integral}{Vf}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-sbRelierxy{Vf}{comp}
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
+\begin_inset Graphics
+	filename Fig/Velocity_Feedback.pdf
 
 \end_inset
 
@@ -1286,8 +878,8 @@ A bug of asmmath, can be fixed by mathtools
 
 \begin_layout Standard
 \begin_inset Formula \[
-\begin{gathered}{}[p]=100\\{}
-[v]=200\end{gathered}
+\begin{gathered}{}[p]=100\\
+{}[v]=200\end{gathered}
 \]
 
 \end_inset
