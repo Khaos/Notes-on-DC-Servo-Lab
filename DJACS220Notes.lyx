@@ -143,6 +143,26 @@ armature
 attenuator
 \end_layout
 
+\begin_layout Itemize
+inertia
+\end_layout
+
+\begin_layout Itemize
+inertia load
+\end_layout
+
+\begin_layout Itemize
+friction
+\end_layout
+
+\begin_layout Itemize
+friction load
+\end_layout
+
+\begin_layout Itemize
+torque
+\end_layout
+
 \begin_layout Section
 Notes
 \end_layout
@@ -862,6 +882,263 @@ K_{2}=1\,,\]
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The poles are 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{dcases} 
+\end_layout
+
+\begin_layout Plain Layout
+
+s_{1,
+\backslash
+,2}=-
+\backslash
+zeta_{1}
+\backslash
+omega_{2}
+\backslash
+pm
+\backslash
+omega_{2}
+\backslash
+sqrt{
+\backslash
+zeta_{2}^{2}-1} & 
+\backslash
+text{for }
+\backslash
+zeta_{2}
+\backslash
+geq1
+\backslash
+,,
+\backslash
+
+\backslash
+ s_{1,
+\backslash
+,2}=-
+\backslash
+zeta_{2}
+\backslash
+omega_{2}
+\backslash
+pm
+\backslash
+text{j}
+\backslash
+omega_{2}
+\backslash
+sqrt{1-
+\backslash
+zeta_{2}^{2}} & 
+\backslash
+text{for }
+\backslash
+zeta_{2}<1
+\backslash
+,.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{dcases}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{equation}
+\begin{cases}
+s_{1,\,2}=-\zeta_{1}\omega_{1}\pm\omega_{1}\sqrt{\zeta_{1}^{2}-1} & \text{for }\zeta_{1}\geq1\,,\\
+s=-\zeta_{1}\omega_{1}\pm\text{j}\omega_{1}\sqrt{1-\zeta_{1}^{2}} & \text{for }\zeta_{1}<1\,.\end{cases}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{equation}
+\begin{cases}
+s_{1,\,2}=-\dfrac{1}{2T}\pm\dfrac{\sqrt{1-4TKK_{a}}}{2T} & \text{for }K_{a}\leq\dfrac{1}{4TK}\,,\\
+s_{1,\,2}=-\dfrac{1}{2T}\pm\text{j}\dfrac{\sqrt{4TKK_{a}-1}}{2T} & \text{for }K_{a}>\dfrac{1}{4TK}\,.\end{cases}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ or 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{dcases} 
+\end_layout
+
+\begin_layout Plain Layout
+
+s_{1,
+\backslash
+,2}=-
+\backslash
+dfrac{1 + K K_a K_f}{2T} 
+\backslash
+pm 
+\backslash
+dfrac{
+\backslash
+sqrt{(1+KK_aK_f)^2-4TKK_{a}}}{2T} & 
+\backslash
+text{for } 
+\backslash
+dfrac{(1+KK_aK_f)^2}{4TKK_{a}} 
+\backslash
+geq 1
+\backslash
+,,
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+s_{1,
+\backslash
+,2}=-
+\backslash
+dfrac{1 + K K_a K_f}{2T} 
+\backslash
+pm 
+\backslash
+text{j} 
+\backslash
+dfrac{
+\backslash
+sqrt{4TKK_{a}-(1+KK_aK_f)^2}}{2T} & 
+\backslash
+text{for } 
+\backslash
+dfrac{(1+KK_aK_f)^2}{4TKK_{a}} < 1
+\backslash
+,.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{dcases}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Facts:
+\end_layout
+
+\begin_layout Itemize
+The natural frequency depends only on 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+As 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ increases, the natural frequency gets larger.
+\end_layout
+
+\begin_layout Itemize
+When 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ is fixed, adjust 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+ to give a good 
+\begin_inset Formula $\zeta_{2}$
+\end_inset
+
+ at range 
+\begin_inset Formula $0.4\sim0.8$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
