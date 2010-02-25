@@ -184,6 +184,36 @@ position feedback servo system.
 \end{tikzpicture}
 
 
+\subsection{Velocity control system}
+
+Figure~\ref{fig:VelocityControl} shows the block diagram for the
+speed controlled system.
+
+%
+\tikzsetnextfilename{Velocity_Control}
+\begin{tikzpicture}[every node/.style={font=\small}]
+    \sbStyleSum{minimum size=1em, fill=black!50, thick}
+    \sbEntree{input}
+    \sbCompSum*[4]{comp}{input}{-}{}{+}{}
+        \sbRelier{input}{comp}
+        \sbNomLien[0.8]{input}{$\omega_i$}
+    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+    \sbBloc[3]{gain}{$K_a$}{comp}
+        \sbRelier[$e$]{comp}{gain}
+    \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
+    \sbBloc[3]{system}{$\dfrac{K}{(1+sT)}$}{gain}
+        \sbRelier{gain}{system}
+    \sbSortie[4]{output}{system}
+        \sbRelier{system}{output}
+        \sbNomLien[0.8]{output}{$\omega_o$}
+    \sbDecaleNoeudy[-4]{system}{VfRef}
+    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+    \sbBlocr[3]{Vf}{$K_f$}{VfRef}
+    \sbRelieryx{system-output}{Vf}
+    \sbRelierxy{Vf}{comp}
+    
+\end{tikzpicture}
+
 \section{Conclusions}
 
 
