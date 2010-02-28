@@ -112,12 +112,12 @@ control system for armature controlled motor
     \sbEntree{input}
     \sbComp*[4]{comp}{input}
         \sbRelier{input}{comp}
-        \sbNomLien[0.8]{input}{$V_a$}
+        \sbNomLien[0.8]{input}{$V_a(t)$}
     \sbBloc[3]{system}{$\dfrac{K}{1+sT}$}{comp}
-        \sbRelier[$e$]{comp}{system}
+        \sbRelier[$e(t)$]{comp}{system}
     \sbSortie[4]{output}{system}
         \sbRelier{system}{output}
-        \sbNomLien[0.8]{output}{$\omega$}
+        \sbNomLien[0.8]{output}{$\omega(t)$}
     \sbRenvoi{system-output}{comp}{}
     
 \end{tikzpicture}
@@ -135,16 +135,16 @@ position feedback servo system.
     \sbEntree{input}
     \sbComp*[4]{comp}{input}
         \sbRelier{input}{comp}
-        \sbNomLien[0.8]{input}{$\theta_i$}
+        \sbNomLien[0.8]{input}{$\theta_i(t)$}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBloc[3]{gain}{$K_a$}{comp}
-        \sbRelier[$e$]{comp}{gain}
+        \sbRelier[$e(t)$]{comp}{gain}
     \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
     \sbBloc[3]{system}{$\dfrac{K}{s(1+sT)}$}{gain}
         \sbRelier{gain}{system}
     \sbSortie[4]{output}{system}
         \sbRelier{system}{output}
-        \sbNomLien[0.8]{output}{$\theta_o$}
+        \sbNomLien[0.8]{output}{$\theta_o(t)$}
     \sbRenvoi{system-output}{comp}{}
     
 \end{tikzpicture}
@@ -162,10 +162,10 @@ position feedback servo system.
     \sbEntree{input}
     \sbCompSum*[4]{comp}{input}{-}{-}{+}{}
         \sbRelier{input}{comp}
-        \sbNomLien[0.8]{input}{$\theta_i$}
+        \sbNomLien[0.8]{input}{$\theta_i(t)$}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBloc[3]{gain}{$K_a$}{comp}
-        \sbRelier[$e$]{comp}{gain}
+        \sbRelier[$e(t)$]{comp}{gain}
     \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
     \sbBloc[3]{system}{$\dfrac{K}{(1+sT)}$}{gain}
         \sbRelier{gain}{system}
@@ -173,7 +173,7 @@ position feedback servo system.
         \sbRelier{system}{integral}
     \sbSortie[4]{output}{integral}
         \sbRelier{integral}{output}
-        \sbNomLien[0.8]{output}{$\theta_o$}
+        \sbNomLien[0.8]{output}{$\theta_o(t)$}
     \sbRenvoi{integral-output}{comp}{}
     \sbDecaleNoeudy[-4]{system}{VfRef}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
@@ -196,20 +196,60 @@ speed controlled system.
     \sbEntree{input}
     \sbCompSum*[4]{comp}{input}{-}{}{+}{}
         \sbRelier{input}{comp}
-        \sbNomLien[0.8]{input}{$\omega_i$}
+        \sbNomLien[0.8]{input}{$\omega_i(t)$}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBloc[3]{gain}{$K_a$}{comp}
-        \sbRelier[$e$]{comp}{gain}
+        \sbRelier[$e(t)$]{comp}{gain}
     \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
     \sbBloc[3]{system}{$\dfrac{K}{(1+sT)}$}{gain}
         \sbRelier{gain}{system}
     \sbSortie[4]{output}{system}
         \sbRelier{system}{output}
-        \sbNomLien[0.8]{output}{$\omega_o$}
+        \sbNomLien[0.8]{output}{$\omega_o(t)$}
     \sbDecaleNoeudy[-4]{system}{VfRef}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBlocr[3]{Vf}{$K_f$}{VfRef}
     \sbRelieryx{system-output}{Vf}
+    \sbRelierxy{Vf}{comp}
+    
+\end{tikzpicture}
+
+%
+\tikzsetnextfilename{PIVelocity}
+\begin{tikzpicture}[every node/.style={font=\small}]
+    \sbStyleSum{minimum size=1em, fill=black!50, thick}
+    \sbEntree{input}
+    \sbCompSum*[4]{comp}{input}{-}{-}{+}{}
+        \sbRelier{input}{comp}
+        \sbNomLien[0.8]{input}{$\theta_i(t)$}
+    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+    \sbDecaleNoeudx[1.5]{comp}{piref}
+    \sbDecaleNoeudy[-4]{piref}{pref}
+    \sbDecaleNoeudy[4]{piref}{iref}
+    \sbBloc[1.5]{p}{$1$}{pref}
+    \sbBloc[1.5]{i}{$\dfrac{1}{sT_i}$}{iref}
+    \sbCompSum*[6]{pisum}{piref}{+}{+}{}{}
+        \filldraw (comp.east) -- (piref.center) circle[radius=1pt];
+%        \sbRelier{comp}{piref}
+        \sbRelieryx{piref}{p}
+        \sbRelierxy{p}{pisum}
+        \sbRelieryx{piref}{i}
+        \sbRelierxy{i}{pisum}
+    \sbBloc[2]{gain}{$K_a$}{pisum}
+        \sbRelier{pisum}{gain}
+    \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
+    \sbBloc[2]{system}{$\dfrac{K}{(1+sT)}$}{gain}
+        \sbRelier{gain}{system}
+    \sbBloc[2]{integral}{$\dfrac{1}{s}$}{system}
+        \sbRelier{system}{integral}
+    \sbSortie[4]{output}{integral}
+        \sbRelier{integral}{output}
+        \sbNomLien[0.8]{output}{$\theta_o(t)$}
+    \sbRenvoi[8]{integral-output}{comp}{}
+    \sbDecaleNoeudy[-8]{system}{VfRef}
+    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+    \sbBlocr[2]{Vf}{$K_f$}{VfRef}
+    \sbRelieryx{system-integral}{Vf}
     \sbRelierxy{Vf}{comp}
     
 \end{tikzpicture}

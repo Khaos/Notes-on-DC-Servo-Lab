@@ -568,7 +568,9 @@ geq1
 \backslash
 
 \backslash
- s=-
+ s_{1,
+\backslash
+,2}=-
 \backslash
 zeta_{1}
 \backslash
@@ -851,7 +853,7 @@ The poles are
 
 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -976,7 +978,7 @@ s_{1,\,2}=-\dfrac{1}{2T}\pm\text{j}\dfrac{\sqrt{4TKK_{a}-1}}{2T} & \text{for }K_
 
 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1199,7 +1201,32 @@ Facts:
 \end_layout
 
 \begin_layout Itemize
-The velocity control system is in fact a first-order system.
+The velocity control system is actually a first-order system.
+ (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{Red}{
+\end_layout
+
+\end_inset
+
+This has been proved by the real-world experiment.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Itemize
@@ -1276,6 +1303,410 @@ T_{3}=\dfrac{T}{KK_{a}}\leq T\,,\end{equation}
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:zeroEcondition3"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+PI velocity
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PIVelocity"
+
+\end_inset
+
+ shows the block diagram for the speed controlled system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/PIVelocity.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for velocity control system.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PIVelocity"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+G_{4}(s)=\dfrac{\theta_{o}(s)}{\theta_{i}(s)}=\dfrac{G_{o}(s)}{1+G_{o}(s)+K_{f}sG_{o}(s)}\,,\label{eq:GcPIVelocity}\end{equation}
+
+\end_inset
+
+where the open-loop transfer function 
+\begin_inset Formula \begin{eqnarray}
+G_{o}(s) & = & (1+\dfrac{1}{sT_{i}})\dfrac{KK_{a}}{s(1+sT)}\nonumber \\
+ & = & \dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}\,.\label{eq:GoPIVelocity}\end{eqnarray}
+
+\end_inset
+
+ Substitute Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:GoPIVelocity"
+
+\end_inset
+
+ into Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:GcPIVelocity"
+
+\end_inset
+
+, we have 
+\begin_inset Formula \begin{eqnarray}
+G_{4}(s) & = & \dfrac{\dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}}{1+\dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}+K_{f}s\cdot\dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}}\nonumber \\
+ & = & \dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)+KK_{a}(1+sT_{i})+KK_{a}K_{f}s(1+sT_{i})}\nonumber \\
+ & = & \dfrac{KK_{a}(T_{i}s+1)}{TT_{i}s^{3}+T_{i}(1+KK_{a}K_{f})s^{2}+KK_{a}(K_{f}+T_{i})s+KK_{a}}\end{eqnarray}
+
+\end_inset
+
+ where system gain 
+\begin_inset Formula \begin{equation}
+K_{4}=1\,,\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The zero is
+\begin_inset Formula \begin{equation}
+s=-\dfrac{1}{T_{i}}.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are three poles determined by 
+\begin_inset Formula $T_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+.
+ These poles are the roots of the following cubic funtion 
+\begin_inset Formula \begin{equation}
+TT_{i}s^{3}+T_{i}(1+KK_{a}K_{f})s^{2}+KK_{a}(K_{f}+T_{i})s+KK_{a}=0\,,\end{equation}
+
+\end_inset
+
+ or equivalently 
+\begin_inset Formula \begin{equation}
+s^{3}+\dfrac{(1+KK_{a}K_{f})}{T}s^{2}+\dfrac{KK_{a}(K_{f}+T_{i})}{TT_{i}}s+\dfrac{KK_{a}}{TT_{i}}=0\,,\end{equation}
+
+\end_inset
+
+ or simply 
+\begin_inset Formula \begin{equation}
+s^{3}+as^{2}+bs+c=0\,,\label{eq:cubicEQ}\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula \begin{equation}
+a=\dfrac{(1+KK_{a}K_{f})}{T}\,,\end{equation}
+
+\end_inset
+
+ 
+\begin_inset Formula \begin{equation}
+b=\dfrac{KK_{a}(K_{f}+T_{i})}{TT_{i}}\,,\end{equation}
+
+\end_inset
+
+and 
+\begin_inset Formula \begin{equation}
+c=\dfrac{KK_{a}}{TT_{i}}\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now assume a pole, 
+\begin_inset Formula $s=r$
+\end_inset
+
+, is close to the zero 
+\begin_inset Formula $-1/T_{i}$
+\end_inset
+
+, that is 
+\begin_inset Formula $s=r\approx-1/T_{i}$
+\end_inset
+
+, and then divide Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:cubicEQ"
+
+\end_inset
+
+ by 
+\begin_inset Formula $s-r$
+\end_inset
+
+,
+\begin_inset Formula \begin{equation}
+x^{2}+(a+r)x+b+ar+r^{2}=0\end{equation}
+
+\end_inset
+
+ The roots of about equations are 
+\begin_inset Formula \begin{equation}
+-\dfrac{a+r}{2}\pm\dfrac{\sqrt{-3r^{2}-2ar+a^{2}-4b}}{2}\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula \begin{equation}
+a+r=\dfrac{1+KK_{a}K_{f}}{T}-\dfrac{1}{T_{i}}\,,\end{equation}
+
+\end_inset
+
+ 
+\begin_inset Formula \begin{equation}
+b+ar+r^{2}=\dfrac{1}{T_{i}^{2}}+\dfrac{KK_{a}T_{i}-1}{TT_{i}}\,,\end{equation}
+
+\end_inset
+
+ and 
+\begin_inset Formula \begin{equation}
+c=-r(b+ar+r^{2})\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The last equation implys that 
+\begin_inset Formula \begin{equation}
+\dfrac{KK_{a}}{TT_{i}}=\dfrac{1}{T_{i}}(\dfrac{1}{T_{i}^{2}}+\dfrac{KK_{a}T_{i}-1}{TT_{i}})\end{equation}
+
+\end_inset
+
+ that is 
+\begin_inset Formula \begin{equation}
+KK_{a}T_{i}=\dfrac{T}{T_{i}}+KK_{a}T_{i}-1\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+T_{i}=T\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus we have
+\begin_inset Formula \begin{equation}
+2\zeta_{4}\omega_{4}=a+r=\dfrac{1+KK_{a}K_{f}}{T}-\dfrac{1}{T_{i}}=\dfrac{KK_{a}K_{f}}{T}\,,\end{equation}
+
+\end_inset
+
+and 
+\begin_inset Formula \begin{equation}
+\omega_{4}^{2}=b+ar+r^{2}=\dfrac{1}{T_{i}^{2}}+\dfrac{KK_{a}T_{i}-1}{TT_{i}}=\dfrac{KK_{a}T}{T^{2}}=\dfrac{KK_{a}}{T}\,,\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+\zeta_{4}=\dfrac{K_{f}}{2}\sqrt{\dfrac{KK_{a}}{T}}\,,\end{equation}
+
+\end_inset
+
+ and 
+\begin_inset Formula \begin{equation}
+\omega_{4}=\sqrt{\dfrac{KK_{a}}{T}}\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the constrain 
+\begin_inset Formula \begin{equation}
+\left|-\dfrac{a+r}{2}\right|\ll\left|-\dfrac{1}{T_{i}}\right|=\dfrac{1}{T}\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+\dfrac{KK_{a}K_{f}}{2T}\ll\dfrac{1}{T}\end{equation}
+
+\end_inset
+
+ that is 
+\begin_inset Formula \begin{equation}
+KK_{a}K_{f}\ll2\,.\label{eq:KaKfconstrain}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Facts:
+\end_layout
+
+\begin_layout Itemize
+Choose 
+\begin_inset Formula $T_{i}\approx T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+As 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ increases, the natural frequency gets larger.
+ From 
+\begin_inset Formula $0.4\leq\zeta_{4}\leq0.8$
+\end_inset
+
+, we have 
+\begin_inset Formula \begin{equation}
+0.4\leq\dfrac{K_{f}}{2}\sqrt{\dfrac{KK_{a}}{T}}=\dfrac{KK_{a}K_{f}}{2\sqrt{TKK_{a}}}\leq0.8\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+0.8\sqrt{TKK_{a}}\leq KK_{a}K_{f}\leq1.6\sqrt{TKK_{a}}\,.\end{equation}
+
+\end_inset
+
+ Hence, to satisfy satisfy the constrain given by Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:KaKfconstrain"
+
+\end_inset
+
+, choose 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ as 
+\begin_inset Formula \begin{equation}
+1.6\sqrt{TKK_{a}}\ll2\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+K_{a}\ll\dfrac{1}{0.64TK}\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+When 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ is fixed, adjust 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+ to give a good 
+\begin_inset Formula $\zeta_{2}$
+\end_inset
+
+ at range 
+\begin_inset Formula $0.4\sim0.8$
+\end_inset
+
+ and satisfy the constrain given by Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:KaKfconstrain"
 
 \end_inset
 
