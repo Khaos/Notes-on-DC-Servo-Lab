@@ -113,7 +113,7 @@ control system for armature controlled motor
     \sbComp*[4]{comp}{input}
         \sbRelier{input}{comp}
         \sbNomLien[0.8]{input}{$V_a(t)$}
-    \sbBloc[3]{system}{$\dfrac{K}{1+sT}$}{comp}
+    \sbBloc[3]{system}{$\dfrac{K}{1+Ts}$}{comp}
         \sbRelier[$e(t)$]{comp}{system}
     \sbSortie[4]{output}{system}
         \sbRelier{system}{output}
@@ -140,7 +140,7 @@ position feedback servo system.
     \sbBloc[3]{gain}{$K_a$}{comp}
         \sbRelier[$e(t)$]{comp}{gain}
     \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
-    \sbBloc[3]{system}{$\dfrac{K}{s(1+sT)}$}{gain}
+    \sbBloc[3]{system}{$\dfrac{K}{s(1+Ts)}$}{gain}
         \sbRelier{gain}{system}
     \sbSortie[4]{output}{system}
         \sbRelier{system}{output}
@@ -167,7 +167,7 @@ position feedback servo system.
     \sbBloc[3]{gain}{$K_a$}{comp}
         \sbRelier[$e(t)$]{comp}{gain}
     \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
-    \sbBloc[3]{system}{$\dfrac{K}{(1+sT)}$}{gain}
+    \sbBloc[3]{system}{$\dfrac{K}{(1+Ts)}$}{gain}
         \sbRelier{gain}{system}
     \sbBloc[3]{integral}{$\dfrac{1}{s}$}{system}
         \sbRelier{system}{integral}
@@ -201,7 +201,7 @@ speed controlled system.
     \sbBloc[3]{gain}{$K_a$}{comp}
         \sbRelier[$e(t)$]{comp}{gain}
     \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
-    \sbBloc[3]{system}{$\dfrac{K}{(1+sT)}$}{gain}
+    \sbBloc[3]{system}{$\dfrac{K}{(1+Ts)}$}{gain}
         \sbRelier{gain}{system}
     \sbSortie[4]{output}{system}
         \sbRelier{system}{output}
@@ -224,10 +224,10 @@ speed controlled system.
         \sbNomLien[0.8]{input}{$\theta_i(t)$}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbDecaleNoeudx[1.5]{comp}{piref}
-    \sbDecaleNoeudy[-4]{piref}{pref}
-    \sbDecaleNoeudy[4]{piref}{iref}
+    \sbDecaleNoeudy[-3]{piref}{pref}
+    \sbDecaleNoeudy[3]{piref}{iref}
     \sbBloc[1.5]{p}{$1$}{pref}
-    \sbBloc[1.5]{i}{$\dfrac{1}{sT_i}$}{iref}
+    \sbBloc[1.5]{i}{$\dfrac{1}{T_i s}$}{iref}
     \sbCompSum*[6]{pisum}{piref}{+}{+}{}{}
         \filldraw (comp.east) -- (piref.center) circle[radius=1pt];
 %        \sbRelier{comp}{piref}
@@ -238,19 +238,109 @@ speed controlled system.
     \sbBloc[2]{gain}{$K_a$}{pisum}
         \sbRelier{pisum}{gain}
     \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
-    \sbBloc[2]{system}{$\dfrac{K}{(1+sT)}$}{gain}
+    \sbBloc[2]{system}{$\dfrac{K}{(1+Ts)}$}{gain}
         \sbRelier{gain}{system}
     \sbBloc[2]{integral}{$\dfrac{1}{s}$}{system}
         \sbRelier{system}{integral}
     \sbSortie[4]{output}{integral}
         \sbRelier{integral}{output}
         \sbNomLien[0.8]{output}{$\theta_o(t)$}
-    \sbRenvoi[8]{integral-output}{comp}{}
-    \sbDecaleNoeudy[-8]{system}{VfRef}
+    \sbRenvoi[7]{integral-output}{comp}{}
+    \sbDecaleNoeudy[-7]{system}{VfRef}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBlocr[2]{Vf}{$K_f$}{VfRef}
     \sbRelieryx{system-integral}{Vf}
     \sbRelierxy{Vf}{comp}
+    
+\end{tikzpicture}
+
+
+%
+\tikzsetnextfilename{PID0}
+\begin{tikzpicture}[every node/.style={font=\small}]
+    \sbStyleSum{minimum size=1em, fill=black!50, thick}
+    \sbEntree{input}
+    \sbComp*[4]{comp}{input}
+        \sbRelier{input}{comp}
+        \sbNomLien[0.8]{input}{$\theta_i(t)$}
+    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+    \sbBloc[5]{p}{$1$}{comp}
+    \sbDecaleNoeudy[-4]{p}{iref}
+    \sbDecaleNoeudy[4]{p}{dref}
+    \sbBloc[-1.5]{i}{$\dfrac{1}{T_i s}$}{iref}
+    \sbBloc[-1.5]{d}{$T_d s$}{dref}
+    \sbCompSum*[4]{pidsum}{p}{+}{+}{+}{}
+        \sbRelier{comp}{p}
+        \sbRelier{p}{pidsum}
+        \sbRelieryx{$(comp.east)!.6!(p.west)$}{i}
+        \sbRelierxy{i}{pidsum}
+        \sbRelieryx{$(comp.east)!.6!(p.west)$}{d}
+        \sbRelierxy{d}{pidsum}
+        \fill ($(comp.east)!.6!(p.west)$) circle[radius=1pt];
+%        \sbNomLien{$(comp.east)!.3!(p.west)$}{$e(t)$}
+        \node[above] at ($(comp.east)!.3!(p.west)$) {$e(t)$};
+    \sbBloc[2]{gain}{$K_a$}{pidsum}
+        \sbRelier{pidsum}{gain}
+    \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
+    \sbBloc[3]{system}{$\dfrac{K}{s(1+Ts)}$}{gain}
+        \sbRelier{gain}{system}
+    \sbSortie[4]{output}{system}
+        \sbRelier{system}{output}
+        \sbNomLien[0.8]{output}{$\theta_o(t)$}
+    \sbRenvoi[7]{system-output}{comp}{}
+%    \sbDecaleNoeudy[-7]{system}{VfRef}
+%    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+%    \sbBlocr[2]{Vf}{$K_f$}{VfRef}
+%    \sbRelieryx{system-integral}{Vf}
+%    \sbRelierxy{Vf}{comp}
+    
+\end{tikzpicture}
+
+
+%
+\tikzsetnextfilename{PID1}
+\begin{tikzpicture}[every node/.style={font=\small}]
+    \sbStyleSum{minimum size=1em, fill=black!50, thick}
+    \sbEntree{input}
+    \sbComp*[4]{comp}{input}
+        \sbRelier{input}{comp}
+        \sbNomLien[0.8]{input}{$\theta_i(t)$}
+    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+    \sbBloc[5]{p}{$1$}{comp}
+    \sbDecaleNoeudy[-4]{p}{iref}
+    \sbDecaleNoeudy[4]{p}{dref}
+    \sbBloc[-1.5]{i}{$\dfrac{1}{T_i s}$}{iref}
+    \sbBloc[-1.5]{d}{$T_d s$}{dref}
+    \sbCompSum*[4]{pidsum}{p}{+}{+}{+}{}
+        \sbRelier{comp}{p}
+        \sbRelier{p}{pidsum}
+        \coordinate (pidref) at ($(comp.east)!.6!(p.west)$);
+%        \sbDecaleNoeudx[3.5]{comp}{pidref}
+        \sbRelieryx{pidref}{i}
+        \sbRelierxy{i}{pidsum}
+%        \sbRelieryx{$(comp.east)!.6!(p.west)$}{d}
+        \sbRelierxy{d}{pidsum}
+        \fill (pidref) circle[radius=1pt];
+%        \sbNomLien{$(comp.east)!.3!(p.west)$}{$e(t)$}
+        \node[above] at ($(comp.east)!.5!(pidref.west)$) {$e(t)$};
+    \sbBloc[2]{gain}{$K_a$}{pidsum}
+        \sbRelier{pidsum}{gain}
+    \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
+    \sbBloc[3]{system}{$\dfrac{K}{s(1+Ts)}$}{gain}
+        \sbRelier{gain}{system}
+    \sbSortie[4]{output}{system}
+        \sbRelier{system}{output}
+        \sbNomLien[0.8]{output}{$\theta_o(t)$}
+    \sbRenvoi[7]{system-output}{comp}{}
+    \coordinate[below=7em of pidref] (dref);
+    \fill (dref) circle[radius=1pt];
+%    \sbDecaleNoeudy[7]{pidref}{dref}
+        \sbRelieryx{dref}{d}
+%    \sbDecaleNoeudy[-7]{system}{VfRef}
+%    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+%    \sbBlocr[2]{Vf}{$K_f$}{VfRef}
+%    \sbRelieryx{system-integral}{Vf}
+%    \sbRelierxy{Vf}{comp}
     
 \end{tikzpicture}
 
