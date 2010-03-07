@@ -1,6 +1,6 @@
 %% LyX 1.6.5 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[12pt,a4paper,british]{article}
+\documentclass[10pt,a4paper,british]{article}
 \usepackage[]{fontenc}
 \usepackage[latin9]{inputenc}
 \usepackage{amstext}
@@ -52,8 +52,13 @@
 
 \usepackage{djschemabloc}
 
+\usepackage{bodegraph}
 
 \usetikzlibrary{circuits}
+
+\usetikzlibrary{intersections} 
+
+%\usetikzlibrary{positioning}
 
 \usetikzlibrary{external}
 \tikzexternalize{DJACS220NotesFig} % provide the file's real name
@@ -119,6 +124,7 @@ control system for armature controlled motor
         \sbRelier{system}{output}
         \sbNomLien[0.8]{output}{$\omega(t)$}
     \sbRenvoi{system-output}{comp}{}
+        \fill (system-output.south) circle[radius=1pt];
     
 \end{tikzpicture}
 
@@ -146,6 +152,7 @@ position feedback servo system.
         \sbRelier{system}{output}
         \sbNomLien[0.8]{output}{$\theta_o(t)$}
     \sbRenvoi{system-output}{comp}{}
+        \fill (system-output.south) circle[radius=1pt];
     
 \end{tikzpicture}
 
@@ -175,10 +182,12 @@ position feedback servo system.
         \sbRelier{integral}{output}
         \sbNomLien[0.8]{output}{$\theta_o(t)$}
     \sbRenvoi{integral-output}{comp}{}
+        \fill (integral-output.south) circle[radius=1pt];
     \sbDecaleNoeudy[-4]{system}{VfRef}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBlocr[3]{Vf}{$K_f$}{VfRef}
     \sbRelieryx{system-integral}{Vf}
+        \fill (system-integral.south) circle[radius=1pt];
     \sbRelierxy{Vf}{comp}
     
 \end{tikzpicture}
@@ -210,6 +219,7 @@ speed controlled system.
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBlocr[3]{Vf}{$K_f$}{VfRef}
     \sbRelieryx{system-output}{Vf}
+        \fill (system-output.south) circle[radius=1pt];
     \sbRelierxy{Vf}{comp}
     
 \end{tikzpicture}
@@ -246,10 +256,12 @@ speed controlled system.
         \sbRelier{integral}{output}
         \sbNomLien[0.8]{output}{$\theta_o(t)$}
     \sbRenvoi[7]{integral-output}{comp}{}
+        \fill (integral-output.south) circle[radius=1pt];
     \sbDecaleNoeudy[-7]{system}{VfRef}
     \sbStyleBloc{minimum width=3em, fill=red!20, thick}
     \sbBlocr[2]{Vf}{$K_f$}{VfRef}
     \sbRelieryx{system-integral}{Vf}
+        \fill (system-integral.south) circle[radius=1pt];
     \sbRelierxy{Vf}{comp}
     
 \end{tikzpicture}
@@ -288,12 +300,8 @@ speed controlled system.
         \sbRelier{system}{output}
         \sbNomLien[0.8]{output}{$\theta_o(t)$}
     \sbRenvoi[7]{system-output}{comp}{}
-%    \sbDecaleNoeudy[-7]{system}{VfRef}
-%    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
-%    \sbBlocr[2]{Vf}{$K_f$}{VfRef}
-%    \sbRelieryx{system-integral}{Vf}
-%    \sbRelierxy{Vf}{comp}
-    
+        \fill (system-output.south) circle[radius=1pt];
+
 \end{tikzpicture}
 
 
@@ -311,7 +319,7 @@ speed controlled system.
     \sbDecaleNoeudy[4]{p}{dref}
     \sbBloc[-1.5]{i}{$\dfrac{1}{T_i s}$}{iref}
     \sbBloc[-1.5]{d}{$T_d s$}{dref}
-    \sbCompSum*[4]{pidsum}{p}{+}{+}{+}{}
+    \sbCompSum*[4]{pidsum}{p}{+}{-}{+}{}
         \sbRelier{comp}{p}
         \sbRelier{p}{pidsum}
         \coordinate (pidref) at ($(comp.east)!.6!(p.west)$);
@@ -332,6 +340,7 @@ speed controlled system.
         \sbRelier{system}{output}
         \sbNomLien[0.8]{output}{$\theta_o(t)$}
     \sbRenvoi[7]{system-output}{comp}{}
+        \fill (system-output.south) circle[radius=1pt];
     \coordinate[below=7em of pidref] (dref);
     \fill (dref) circle[radius=1pt];
 %    \sbDecaleNoeudy[7]{pidref}{dref}
@@ -343,6 +352,176 @@ speed controlled system.
 %    \sbRelierxy{Vf}{comp}
     
 \end{tikzpicture}
+
+
+%
+\tikzsetnextfilename{PID2}
+\begin{tikzpicture}[every node/.style={font=\small}]
+    \sbStyleSum{minimum size=1em, fill=black!50, thick}
+    \sbEntree{input}
+    \sbComp*[4]{comp}{input}
+        \sbRelier{input}{comp}
+        \sbNomLien[0.8]{input}{$\theta_i(t)$}
+    \sbStyleBloc{minimum width=3em, fill=red!20, thick}
+    \sbBloc[5]{p}{$1$}{comp}
+    \sbDecaleNoeudy[-4]{p}{iref}
+    \sbDecaleNoeudy[4]{p}{dref}
+    \sbBloc[-1.5]{i}{$\dfrac{1}{T_i s}$}{iref}
+%    \sbBloc[-1.5]{d}{$T_d s$}{dref}
+    \sbCompSum*[4]{pidsum}{p}{+}{}{+}{}
+        \sbRelier{comp}{p}
+        \sbRelier{p}{pidsum}
+        \coordinate (pidref) at ($(comp.east)!.6!(p.west)$);
+%        \sbDecaleNoeudx[3.5]{comp}{pidref}
+        \sbRelieryx{pidref}{i}
+        \sbRelierxy{i}{pidsum}
+%        \sbRelieryx{$(comp.east)!.6!(p.west)$}{d}
+%        \sbRelierxy{d}{pidsum}
+        \fill (pidref) circle[radius=1pt];
+%        \sbNomLien{$(comp.east)!.3!(p.west)$}{$e(t)$}
+        \node[above] at ($(comp.east)!.5!(pidref.west)$) {$e(t)$};
+	\sbCompSum*[3]{pidsum1}{pidsum}{}{-}{+}{}
+		\sbRelier{pidsum}{pidsum1}
+    \sbBloc[1.5]{gain}{$K_a$}{pidsum1}
+        \sbRelier{pidsum1}{gain}
+    \sbStyleBloc{minimum width=3em, fill=yellow!20, thick}
+    \sbBloc[2]{system}{$\dfrac{K}{s(1+Ts)}$}{gain}
+        \sbRelier{gain}{system}
+    \sbSortie[4]{output}{system}
+        \sbRelier{system}{output}
+        \sbNomLien[0.8]{output}{$\theta_o(t)$}
+    \sbRenvoi[7]{system-output}{comp}{}
+        \fill (system-output.south) circle[radius=1pt];
+	\sbStyleBloc{minimum width=3em, fill=red!20, thick}
+	\sbDecaleNoeudy[4]{system}{dref}
+	\sbBlocr[2]{d}{$T_d s$}{dref}
+		\coordinate (dfbref) at ($(system.east)!.25!(output.west)$);
+		\fill (dfbref) circle[radius=1pt];
+		\sbRelieryx{dfbref}{d}
+		\sbRelierxy{d}{pidsum1}
+    
+\end{tikzpicture}
+
+%
+% Define the layers for the diagram
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzsetnextfilename{PIDBode}
+\begin{tikzpicture}[>=latex', 
+    ref lines/.style={thin, blue!60}, 
+    ref points/.style={circle, black, opacity=0.7, fill, minimum size= 3pt, inner sep=0}, 
+    every node/.style={font=\small}, 
+    bode lines/.style={very thick, blue}, 
+    Gclabel/.style={text=blue}, 
+    xscale=12/3]
+    
+\begin{scope}[yscale=4/110]
+\UnitedB
+\semilog{-1}{2}{-50}{60}
+
+% Bode plot (magnitude) for the original system, 4/(s/(1+2s)). 
+% Asymptotic line
+\BodeAmp[ref lines, red!60]{-1:1.35}{\POAmpAsymp{4}{2.0}+\IntAmp{1}}
+% Bode plot
+\BodeAmp[bode lines, red, name path=Gomagnitude]{-1:1.35}{\POAmp{4}{2.0}+\IntAmp{1}}
+
+% Bode plot (magnitude) for the original system, 4(1+s)/(s^2/(1+0.1s)). 
+% Asymptotic line
+\BodeAmp[ref lines]{-1:2}{\APAmpAsymp{4}{0.1}{10}+2*\IntAmp{1}}
+% Bode plot
+\BodeAmp[bode lines, name path=magnitude]{-1:2}{\APAmp{4}{0.1}{10}+2*\IntAmp{1}}
+
+% Reference line, (0dB)
+\draw [name path=unitygain, ref lines] (-1,0) -- (2,0);
+
+% Crossover frequency of the original system
+\path [name intersections={of=magnitude and unitygain, by=crossover}];
+\node (coref) [ref points, label={[blue]below left:$\omega_c$}] at (crossover) {};
+
+% Crossover frequency of the compensated system
+\path [name intersections={of=Gomagnitude and unitygain, by=Gocrossover}];
+\node (Gocoref) [ref points, label={[red]below:$\omega_{co}$}] at (Gocrossover) {};
+
+% Labels for the original system (open-loop)
+\node [Gclabel, text=red] at (-0.7, 15) {$-20$dB/dec};
+\node [Gclabel, text=red] at (0.5, -30) {$-40$dB/dec};
+\node (KG) [Gclabel, red!60, text=red, draw] at (-0.5, -30) {$KG(s)=\dfrac{4}{s(1+2s)}$};
+\draw (KG.east) edge [->, shorten >=1pt, thick, red, bend right=1.5] (0.4, -10);
+
+% Labels for the compensated system (open-loop)
+\node [ref points, label={[blue]below left:$\omega_2$}] at (0, 0) {};
+\node [ref points, label={[blue]below right:$\omega_3$}] at (1, 0) {};
+\node [Gclabel] at (-0.4, 40) {$-40$dB/dec};
+\node [Gclabel] at (0.5, 10) {$-20$dB/dec};
+\node [Gclabel] at (1.6, -20) {$-40$dB/dec};
+\node (KDG) [Gclabel, blue!60, text=blue, draw] at (1.4, 40) {$KD(s)G(s)=\dfrac{4(1+s)}{s^2(1+0.1s)}$};
+\draw (KDG.west) edge [->, shorten >=1pt, thick, blue, bend right=1.5] (0.17, 10);
+
+% Axes label
+\node [below=6pt] at (0.5,-50) {Frequency, $\omega$};
+\node [rotate=90] at (-1.25,5) {Magnitude, $20\log(|G(\text{j}\omega)|)$};
+
+
+\end{scope}
+
+\begin{scope}[yshift=-3.5cm,yscale=4/180]
+\UniteDegre
+\OrdBode{30}
+\semilog{-1}{2}{-180}{0}
+% Bode plot (phase) for the original system, 4/(s/(1+2s)). 
+% Asymptotic line
+\BodeArg[ref lines, red!60]{-1:2}{\POArgAsymp{4}{2.0}+\IntArg{1}}
+% Bode plot
+\BodeArg[bode lines, red, name path=Gophase]{-1:2}{\POArg{4}{2}+\IntArg{1}}
+
+% Bode plot (magnitude) for the original system, 4(1+s)/(s^2/(1+0.1s)). 
+% Asymptotic line
+\BodeArg[ref lines]{-1:2}{\APArgAsymp{4}{0.1}{10}+2*\IntArg{1}}
+% Bode plot
+\BodeArg[bode lines, name path=phase]{-1:2}{\APArg{4}{0.1}{10}+2*\IntArg{1}}
+
+% Phase margin of the original system
+\path [name path=Gowcref] (Gocrossover) -- ++(0,-330);
+\path [name intersections={of=Gophase and Gowcref, by=Gophasemargin}];
+\node (Gopmref) [ref points] at (Gophasemargin) {};
+\draw [ref lines, red!60, densely dotted] (Gocoref.south) -- (Gopmref.north);
+\draw [ref lines, <->, red] let \p1=(Gophasemargin)
+    in
+        (Gopmref.south) -- node[left, Gclabel, text=red] {$\text{PM}_o$} (\x1,-180);
+        
+% Phase margin of the compensated system
+\path[name path=wcref] (crossover) -- ++(0,-300);
+\path [name intersections={of=phase and wcref, by=phasemargin}];
+\node (pmref) [ref points] at (phasemargin) {};
+\draw [ref lines, densely dotted] (coref.south) -- (pmref.north);
+\draw [ref lines, <->, blue] let \p1=(phasemargin)
+    in
+        (pmref.south) -- node[left, Gclabel] {PM} (\x1,-180);
+
+       
+\node (KGphase) [Gclabel, red!60, text=red, draw] at (-0.5, -40) {$KG(s)=\dfrac{4}{s(1+2s)}$};
+\draw[->, shorten >=1pt, thick, red] (KGphase.south) .. controls +(down:30) and +(0.1,10) .. (-0.65, -114);
+
+\node (KDGphase) [Gclabel, blue!60, text=blue, draw] at (1.4, -40) {$KD(s)G(s)=\dfrac{4(1+s)}{s^2(1+0.1s)}$};
+\draw[->, shorten >=1pt, thick, blue] (KDGphase.south) .. controls +(down:40) and +(0.1,30) .. (1.1, -146);
+
+% Axes label        
+\node [below=6pt] at (0.5, -180) {Frequency, $\omega$};
+\node [rotate=90] at (-1.25, -90) {Phase, $\angle G(\text{j}\omega)$};
+\end{scope}
+
+% Background, try tkzexample later.
+\begin{pgfonlayer}{background}
+    \path (-1.4cm,2.8cm) node (tl) {};
+    \path (2.3cm, -8.4cm) node (br) {};
+    
+    \path[fill=brown!20] (tl) rectangle (br);
+\end{pgfonlayer}
+
+\end{tikzpicture}
+
 
 \section{Conclusions}
 
