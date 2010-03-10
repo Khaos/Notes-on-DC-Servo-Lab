@@ -2133,10 +2133,6 @@ The design procedure
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Note Note
-status collapsed
-
 \begin_layout Section
 Some Keywords
 \end_layout
@@ -2197,20 +2193,15 @@ Conclusions
 Tmp
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 A bug of asmmath, can be fixed by mathtools
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Formula \[
 \begin{gathered}{}[p]=100\\
 {}[v]=200\end{gathered}
 \]
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
