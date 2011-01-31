@@ -1,4 +1,4 @@
-#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.8 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -380,7 +380,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/Motor_Model.pdf
+	filename Fig/pdf/Motor_Model.pdf
 
 \end_inset
 
@@ -460,7 +460,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/Position_Feedback.pdf
+	filename Fig/pdf/Position_Feedback.pdf
 
 \end_inset
 
@@ -787,7 +787,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/Velocity_Feedback.pdf
+	filename Fig/pdf/Velocity_Feedback.pdf
 
 \end_inset
 
@@ -1136,7 +1136,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/Velocity_Control.pdf
+	filename Fig/pdf/Velocity_Control.pdf
 
 \end_inset
 
@@ -1342,7 +1342,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/PIVelocity.pdf
+	filename Fig/pdf/PIVelocity.pdf
 
 \end_inset
 
@@ -1747,7 +1747,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/PID0.pdf
+	filename Fig/pdf/PID0.pdf
 
 \end_inset
 
@@ -1819,7 +1819,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/PID1.pdf
+	filename Fig/pdf/PID1.pdf
 
 \end_inset
 
@@ -1900,7 +1900,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/PID2.pdf
+	filename Fig/pdf/PID2.pdf
 
 \end_inset
 
@@ -1986,7 +1986,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fig/PIDBode.pdf
+	filename Fig/pdf/PIDBode.pdf
 
 \end_inset
 

@@ -2,9 +2,13 @@
 *.lyx~
 tmp
 recycle
-Fig/*.log
-Fig/DJACS220NotesFig.*
-!Fig/DJACS220NotesFig.tex
-Fig/DJACS220NotesFigTmp.*
-!Fig/DJACS220NotesFigTmp.tex
+
+Fig/Src/*.log
+Fig/Src/DJACS220NotesFig.*
+!Fig/Src/DJACS220NotesFig.tex
+Fig/Src/DJACS220NotesFigTmp.*
+!Fig/Src/DJACS220NotesFigTmp.tex
+Fig/Src/gnuplot
 Fig/gnuplot
+
+Ref/Inverted\ Pendulum
