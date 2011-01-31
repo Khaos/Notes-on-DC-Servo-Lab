@@ -1,3 +1,5 @@
+.DS_Store
+*.lyx~
 tmp
 recycle
 Fig/*.log

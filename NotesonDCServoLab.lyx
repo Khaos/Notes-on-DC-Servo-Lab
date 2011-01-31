@@ -1,0 +1,2212 @@
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass DJespcrc1
+\begin_preamble
+%\input{DJcommonpk-phd1-pgf-en}
+%\input{DJcommonpk-pgf-en}
+
+% Definition of command \djphd
+\input{DJ4DJespcrc}
+
+% Commonly used mathematical macro
+%\input{DJcommonmath}
+% identification
+%\readRCS $Id: ModifiedFICA.tex,v 0.01 2009/06/15 15:20:11 Exp $
+%\ProvidesFile{ModifiedFICA.tex}[\filedate \space v\fileversion
+%     \space DJElsevier 1-column CRC Author Instructions]
+\readRCS $Id: DJACS220Notes.tex,v 0.01 2010/02/20 15:20:11 Exp $
+\ProvidesFile{DJACS220Notes.tex}[\filedate \space v\fileversion
+     \space DJElsevier 1-column CRC Author Instructions]
+
+
+
+% This package is not declared in DJespcrc1.sty
+%\usepackage[numbers, sort&compress]{natbib}
+% pdfsync.sty allows one to synchronize between LaTeX source and pdf output
+%\usepackage{pdfsync}
+
+
+
+
+% change this to the following line for use with LaTeX2.09
+% \documentstyle[12pt,twoside,fleqn,espcrc1]{article}
+% if you want to include PostScript figures
+%\usepackage{graphicx}
+% if you have landscape tables
+%\usepackage[figuresright]{rotating}
+% Put all the style files and packages you want here
+% Load DJ-defined report packages
+\input{DJReportLoadAll}
+
+%\usepackage{amsmath}
+
+\usepackage{mathtools}
+
+\usepackage{djschemabloc}
+
+
+\usetikzlibrary{circuits}
+
+
+
+
+%\renewcommand{\jot}{2\jot}
+
+% For command \textdegree, \textcelsius, ect.
+
+\DeclareMathOperator \J {J}
+
+\ifpdf
+\graphicspath{{./}{./Fig/pdf/}{./Fig/}}
+\else
+\graphicspath{{./}{./Fig/eps/}{./Fig/}}
+\fi
+\end_preamble
+\use_default_options true
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Notes on DC Servo Lab
+\end_layout
+
+\begin_layout Author
+Dazhi Jiang
+\end_layout
+
+\begin_layout RunTitle
+Notes on DC Servo Lab
+\end_layout
+
+\begin_layout RunAuthor
+Dazhi Jiang
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+This document includes some notes on the DC Servo lab (ACS220).
+\end_layout
+
+\begin_layout Section
+Notes
+\end_layout
+
+\begin_layout Subsection
+Armature controlled motor model
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MotorModel"
+
+\end_inset
+
+ shows the simplified block diagram of control system for armature controlled
+ motor
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{block} = [draw, fill=blue!20, rectangle,      minimum height=3em,
+ minimum width=6em] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{input} = [coordinate] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{output} = [coordinate] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% The block diagram code is probably more verbose than necessary 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[auto, node distance=2cm,>=latex', every node/.style={font=
+\backslash
+small}]
+\end_layout
+
+\begin_layout Plain Layout
+
+    % We start by placing the blocks
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [input, name=input] {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [sum, right of=input] (sum) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+% node [block, right of=sum] (controller) {Controller};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [block, right of=sum] (system) {$
+\backslash
+dfrac{K}{1+sT}$};
+\end_layout
+
+\begin_layout Plain Layout
+
+    % We draw an edge between the controller and system block to
+\end_layout
+
+\begin_layout Plain Layout
+
+    % calculate the coordinate u.
+ We need it to place the measurement block.
+\end_layout
+
+\begin_layout Plain Layout
+
+    % 
+\backslash
+draw [->] (controller) -- node[name=u] {$u$} (system);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [output, right of=system] (output) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [coordinate, below={1em of system}] (measurements) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    % Once the nodes are placed, connecting them is easy.
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [draw,->] (input) -- node {$r$} (sum);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [->] (sum) -- node {$e$} (system);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [->] (system) -- node [name=y] {$y$}(output);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw (y) |- (measurements);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [->] (measurements) -| node[pos=0.95] {$-$} (sum); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The simplified block diagram of control system for armature controlled motor
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ICAvsMICAcorr"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/Motor_Model.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The simplified block diagram of control system for armature controlled motor
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MotorModel"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+G_{M}(s) & = & \dfrac{\omega(s)}{V_{a}(s)}=\dfrac{\dfrac{K}{1+sT}}{1+\dfrac{K}{1+sT}}\nonumber \\
+ & = & \dfrac{K}{(K+1)+sT}=\dfrac{\dfrac{K}{K+1}}{1+\dfrac{T}{K+1}s}\nonumber \\
+ & = & \dfrac{K_{M}}{1+sT_{M}}\,,\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $K_{M}=K/(K+1)$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{M}=T/(K+1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Position feedback control
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PositionFeedback"
+
+\end_inset
+
+ shows the block diagram for the position feedback servo system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/Position_Feedback.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for position feedback servo
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PositionFeedback"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+G_{1}(s) & = & \dfrac{\theta_{o}(s)}{\theta_{i}(s)}\nonumber \\
+ & = & \dfrac{K_{a}\cdot\dfrac{K}{s(1+sT)}}{1+K_{a}\cdot\dfrac{K}{s(1+sT)}}=\dfrac{KK_{a}}{Ts^{2}+s+KK_{a}}=\dfrac{\dfrac{KK_{a}}{T}}{s^{2}+\dfrac{1}{T}s+\dfrac{KK_{a}}{T}}\nonumber \\
+ & = & \dfrac{K_{1}\omega_{1}^{2}}{s^{2}+2\zeta_{1}\omega_{1}s+\omega_{1}^{2}}\,,\end{eqnarray}
+
+\end_inset
+
+where system gain 
+\begin_inset Formula \[
+K_{1}=1\,,\]
+
+\end_inset
+
+ natural frequency 
+\begin_inset Formula \[
+\omega_{1}=\sqrt{\dfrac{KK_{a}}{T}}\,,\]
+
+\end_inset
+
+ damping ratio 
+\begin_inset Formula \[
+\zeta_{1}=\dfrac{1}{2T\omega_{1}}=\dfrac{1}{2\sqrt{TKK_{a}}}\,.\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The poles are 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{dcases} 
+\end_layout
+
+\begin_layout Plain Layout
+
+s_{1,
+\backslash
+,2}=-
+\backslash
+zeta_{1}
+\backslash
+omega_{1}
+\backslash
+pm
+\backslash
+omega_{1}
+\backslash
+sqrt{
+\backslash
+zeta_{1}^{2}-1} & 
+\backslash
+text{for }
+\backslash
+zeta_{1}
+\backslash
+geq1
+\backslash
+,,
+\backslash
+
+\backslash
+ s_{1,
+\backslash
+,2}=-
+\backslash
+zeta_{1}
+\backslash
+omega_{1}
+\backslash
+pm
+\backslash
+text{j}
+\backslash
+omega_{1}
+\backslash
+sqrt{1-
+\backslash
+zeta_{1}^{2}} & 
+\backslash
+text{for }
+\backslash
+zeta_{1}<1
+\backslash
+,.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{dcases}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{equation}
+\begin{cases}
+s_{1,\,2}=-\zeta_{1}\omega_{1}\pm\omega_{1}\sqrt{\zeta_{1}^{2}-1} & \text{for }\zeta_{1}\geq1\,,\\
+s=-\zeta_{1}\omega_{1}\pm\text{j}\omega_{1}\sqrt{1-\zeta_{1}^{2}} & \text{for }\zeta_{1}<1\,.\end{cases}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{equation}
+\begin{cases}
+s_{1,\,2}=-\dfrac{1}{2T}\pm\dfrac{\sqrt{1-4TKK_{a}}}{2T} & \text{for }K_{a}\leq\dfrac{1}{4TK}\,,\\
+s_{1,\,2}=-\dfrac{1}{2T}\pm\text{j}\dfrac{\sqrt{4TKK_{a}-1}}{2T} & \text{for }K_{a}>\dfrac{1}{4TK}\,.\end{cases}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ or 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{dcases} s_{1,
+\backslash
+,2}=-
+\backslash
+dfrac{1}{2T}
+\backslash
+pm
+\backslash
+dfrac{
+\backslash
+sqrt{1-4TKK_{a}}}{2T} & 
+\backslash
+text{for }K_{a}
+\backslash
+leq
+\backslash
+dfrac{1}{4TK}
+\backslash
+,,
+\backslash
+
+\backslash
+ s_{1,
+\backslash
+,2}=-
+\backslash
+dfrac{1}{2T}
+\backslash
+pm
+\backslash
+text{j}
+\backslash
+dfrac{
+\backslash
+sqrt{4TKK_{a}-1}}{2T} & 
+\backslash
+text{for }K_{a}>
+\backslash
+dfrac{1}{4TK}
+\backslash
+,.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{dcases}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Facts:
+\end_layout
+
+\begin_layout Itemize
+As 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ increases, the imaginary part of the poles gets larger.
+ 
+\end_layout
+
+\begin_layout Itemize
+As 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ increases, the damping ratio decreases.
+ 
+\end_layout
+
+\begin_layout Itemize
+As 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ increases, the natural frequency also increases.
+\end_layout
+
+\begin_layout Subsection
+Velocity feedback control
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:VelocityFeedback"
+
+\end_inset
+
+ shows the block diagram for the position feedback servo system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/Velocity_Feedback.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for velocity feedback position control servo
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:VelocityFeedback"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+G_{2}(s) & = & \dfrac{\theta_{o}(s)}{\theta_{i}(s)}\nonumber \\
+ & = & \dfrac{K_{a}\cdot\dfrac{K}{s(1+sT)}}{1+K_{a}\cdot\dfrac{K}{s(1+sT)}+K_{a}K_{f}\cdot\dfrac{K}{1+sT}}\nonumber \\
+ & = & \dfrac{KK_{a}}{Ts^{2}+s+KK_{a}+KK_{a}K_{f}s}\nonumber \\
+ & = & \dfrac{\dfrac{KK_{a}}{T}}{s^{2}+\dfrac{1+KK_{a}K_{f}}{T}s+\dfrac{KK_{a}}{T}}\nonumber \\
+ & = & \dfrac{K_{2}\omega_{2}^{2}}{s^{2}+2\zeta_{2}\omega_{2}s+\omega_{2}^{2}}\,,\end{eqnarray}
+
+\end_inset
+
+where system gain 
+\begin_inset Formula \[
+K_{2}=1\,,\]
+
+\end_inset
+
+ natural frequency 
+\begin_inset Formula \[
+\omega_{2}=\sqrt{\dfrac{KK_{a}}{T}}\,,\]
+
+\end_inset
+
+ damping ratio 
+\begin_inset Formula \[
+\zeta_{2}=\dfrac{1+KK_{a}K_{f}}{2T\omega_{2}}=\dfrac{1+KK_{a}K_{f}}{2\sqrt{TKK_{a}}}\,.\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The poles are 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{dcases} 
+\end_layout
+
+\begin_layout Plain Layout
+
+s_{1,
+\backslash
+,2}=-
+\backslash
+zeta_{1}
+\backslash
+omega_{2}
+\backslash
+pm
+\backslash
+omega_{2}
+\backslash
+sqrt{
+\backslash
+zeta_{2}^{2}-1} & 
+\backslash
+text{for }
+\backslash
+zeta_{2}
+\backslash
+geq1
+\backslash
+,,
+\backslash
+
+\backslash
+ s_{1,
+\backslash
+,2}=-
+\backslash
+zeta_{2}
+\backslash
+omega_{2}
+\backslash
+pm
+\backslash
+text{j}
+\backslash
+omega_{2}
+\backslash
+sqrt{1-
+\backslash
+zeta_{2}^{2}} & 
+\backslash
+text{for }
+\backslash
+zeta_{2}<1
+\backslash
+,.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{dcases}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{equation}
+\begin{cases}
+s_{1,\,2}=-\zeta_{1}\omega_{1}\pm\omega_{1}\sqrt{\zeta_{1}^{2}-1} & \text{for }\zeta_{1}\geq1\,,\\
+s=-\zeta_{1}\omega_{1}\pm\text{j}\omega_{1}\sqrt{1-\zeta_{1}^{2}} & \text{for }\zeta_{1}<1\,.\end{cases}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{equation}
+\begin{cases}
+s_{1,\,2}=-\dfrac{1}{2T}\pm\dfrac{\sqrt{1-4TKK_{a}}}{2T} & \text{for }K_{a}\leq\dfrac{1}{4TK}\,,\\
+s_{1,\,2}=-\dfrac{1}{2T}\pm\text{j}\dfrac{\sqrt{4TKK_{a}-1}}{2T} & \text{for }K_{a}>\dfrac{1}{4TK}\,.\end{cases}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ or 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{dcases} 
+\end_layout
+
+\begin_layout Plain Layout
+
+s_{1,
+\backslash
+,2}=-
+\backslash
+dfrac{1 + K K_a K_f}{2T} 
+\backslash
+pm 
+\backslash
+dfrac{
+\backslash
+sqrt{(1+KK_aK_f)^2-4TKK_{a}}}{2T} & 
+\backslash
+text{for } 
+\backslash
+dfrac{(1+KK_aK_f)^2}{4TKK_{a}} 
+\backslash
+geq 1
+\backslash
+,,
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+s_{1,
+\backslash
+,2}=-
+\backslash
+dfrac{1 + K K_a K_f}{2T} 
+\backslash
+pm 
+\backslash
+text{j} 
+\backslash
+dfrac{
+\backslash
+sqrt{4TKK_{a}-(1+KK_aK_f)^2}}{2T} & 
+\backslash
+text{for } 
+\backslash
+dfrac{(1+KK_aK_f)^2}{4TKK_{a}} < 1
+\backslash
+,.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{dcases}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Facts:
+\end_layout
+
+\begin_layout Itemize
+The natural frequency depends only on 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+As 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ increases, the natural frequency gets larger.
+\end_layout
+
+\begin_layout Itemize
+When 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ is fixed, adjust 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+ to give a good 
+\begin_inset Formula $\zeta_{2}$
+\end_inset
+
+ at range 
+\begin_inset Formula $0.4\sim0.8$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Velocity control system
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:VelocityControl"
+
+\end_inset
+
+ shows the block diagram for the speed controlled system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/Velocity_Control.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for velocity control system.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:VelocityControl"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+G_{3}(s) & = & \dfrac{\omega_{o}(s)}{\omega_{i}(s)}=\dfrac{K_{a}\cdot\dfrac{K}{(1+sT)}}{1+K_{a}K_{f}\cdot\dfrac{K}{1+sT}}=\dfrac{KK_{a}}{Ts+(1+KK_{a}K_{f})}\nonumber \\
+ & = & \dfrac{K_{3}}{T_{3}s+1}\,,\end{eqnarray}
+
+\end_inset
+
+where system gain 
+\begin_inset Formula \begin{equation}
+K_{3}=\dfrac{KK_{a}}{1+KK_{a}K_{f}}\,,\end{equation}
+
+\end_inset
+
+ time constant 
+\begin_inset Formula \begin{equation}
+T_{3}=\dfrac{T}{1+KK_{a}K_{f}}\,.\label{eq:VC_timeConstant}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The poles are 
+\begin_inset Formula \begin{equation}
+s=-\dfrac{1}{T_{3}}=-\dfrac{1+KK_{a}K_{f}}{T}\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Facts:
+\end_layout
+
+\begin_layout Itemize
+The velocity control system is actually a first-order system.
+ (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{Red}{
+\end_layout
+
+\end_inset
+
+This has been validated by the real-world experiment.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+The time constant can be reduced by increasing 
+\begin_inset Formula $K_{a}K_{f}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+To obtain minimum steady state error, 
+\begin_inset Formula $K_{3}$
+\end_inset
+
+ has to be set to 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ This gives
+\begin_inset Formula \begin{equation}
+KK_{a}=1+KK_{a}K_{f}\,,\label{eq:zeroEcondition1}\end{equation}
+
+\end_inset
+
+that is 
+\begin_inset Formula \begin{equation}
+(1-K_{f})K_{a}=\dfrac{1}{K}\,,\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+KK_{a}=\dfrac{1}{1-K_{f}}\geq1\,.\label{eq:zeroEcondition3}\end{equation}
+
+\end_inset
+
+ Thus we have 
+\begin_inset Formula \begin{equation}
+K_{f}\in[0,\,1)\,.\end{equation}
+
+\end_inset
+
+ Furthermore, under the condition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:zeroEcondition1"
+
+\end_inset
+
+, Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:VC_timeConstant"
+
+\end_inset
+
+ becomes
+\begin_inset Formula \begin{equation}
+T_{3}=\dfrac{T}{KK_{a}}\leq T\,,\end{equation}
+
+\end_inset
+
+ by noting Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:zeroEcondition3"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+PI velocity
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PIVelocity"
+
+\end_inset
+
+ shows the block diagram for the speed controlled system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/PIVelocity.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for position feedback servo with PI control and velocity
+ feedback control.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PIVelocity"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+G_{4}(s)=\dfrac{\theta_{o}(s)}{\theta_{i}(s)}=\dfrac{G_{o}(s)}{1+G_{o}(s)+K_{f}sG_{o}(s)}\,,\label{eq:GcPIVelocity}\end{equation}
+
+\end_inset
+
+where the open-loop transfer function 
+\begin_inset Formula \begin{eqnarray}
+G_{o}(s) & = & (1+\dfrac{1}{sT_{i}})\dfrac{KK_{a}}{s(1+sT)}\nonumber \\
+ & = & \dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}\,.\label{eq:GoPIVelocity}\end{eqnarray}
+
+\end_inset
+
+ Substitute Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:GoPID"
+
+\end_inset
+
+ into Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:TFPID1"
+
+\end_inset
+
+, we have 
+\begin_inset Formula \begin{eqnarray}
+G_{4}(s) & = & \dfrac{\dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}}{1+\dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}+K_{f}s\cdot\dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)}}\nonumber \\
+ & = & \dfrac{KK_{a}(1+sT_{i})}{T_{i}s^{2}(1+sT)+KK_{a}(1+sT_{i})+KK_{a}K_{f}s(1+sT_{i})}\nonumber \\
+ & = & \dfrac{KK_{a}(T_{i}s+1)}{TT_{i}s^{3}+T_{i}(1+KK_{a}K_{f})s^{2}+KK_{a}(K_{f}+T_{i})s+KK_{a}}\end{eqnarray}
+
+\end_inset
+
+ where system gain 
+\begin_inset Formula \begin{equation}
+K_{4}=1\,,\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The zero is
+\begin_inset Formula \begin{equation}
+s=-\dfrac{1}{T_{i}}.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are three poles determined by 
+\begin_inset Formula $T_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+.
+ These poles are the roots of the following cubic function 
+\begin_inset Formula \begin{equation}
+TT_{i}s^{3}+T_{i}(1+KK_{a}K_{f})s^{2}+KK_{a}(K_{f}+T_{i})s+KK_{a}=0\,,\end{equation}
+
+\end_inset
+
+ or equivalently 
+\begin_inset Formula \begin{equation}
+s^{3}+\dfrac{(1+KK_{a}K_{f})}{T}s^{2}+\dfrac{KK_{a}(K_{f}+T_{i})}{TT_{i}}s+\dfrac{KK_{a}}{TT_{i}}=0\,,\end{equation}
+
+\end_inset
+
+ or simply 
+\begin_inset Formula \begin{equation}
+s^{3}+as^{2}+bs+c=0\,,\label{eq:cubicEQ}\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula \begin{equation}
+a=\dfrac{(1+KK_{a}K_{f})}{T}\,,\end{equation}
+
+\end_inset
+
+ 
+\begin_inset Formula \begin{equation}
+b=\dfrac{KK_{a}(K_{f}+T_{i})}{TT_{i}}\,,\end{equation}
+
+\end_inset
+
+and 
+\begin_inset Formula \begin{equation}
+c=\dfrac{KK_{a}}{TT_{i}}\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now assume a pole, 
+\begin_inset Formula $s=r$
+\end_inset
+
+, is close to the zero 
+\begin_inset Formula $-1/T_{i}$
+\end_inset
+
+, that is 
+\begin_inset Formula $s=r\approx-1/T_{i}$
+\end_inset
+
+, and then divide Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:cubicEQ"
+
+\end_inset
+
+ by 
+\begin_inset Formula $s-r$
+\end_inset
+
+,
+\begin_inset Formula \begin{equation}
+x^{2}+(a+r)x+b+ar+r^{2}=0\end{equation}
+
+\end_inset
+
+ The roots of about equations are 
+\begin_inset Formula \begin{equation}
+-\dfrac{a+r}{2}\pm\dfrac{\sqrt{-3r^{2}-2ar+a^{2}-4b}}{2}\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula \begin{equation}
+a+r=\dfrac{1+KK_{a}K_{f}}{T}-\dfrac{1}{T_{i}}\,,\end{equation}
+
+\end_inset
+
+ 
+\begin_inset Formula \begin{equation}
+b+ar+r^{2}=\dfrac{1}{T_{i}^{2}}+\dfrac{KK_{a}T_{i}-1}{TT_{i}}\,,\end{equation}
+
+\end_inset
+
+ and 
+\begin_inset Formula \begin{equation}
+c=-r(b+ar+r^{2})\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The last equation implies that 
+\begin_inset Formula \begin{equation}
+\dfrac{KK_{a}}{TT_{i}}=\dfrac{1}{T_{i}}(\dfrac{1}{T_{i}^{2}}+\dfrac{KK_{a}T_{i}-1}{TT_{i}})\end{equation}
+
+\end_inset
+
+ that is 
+\begin_inset Formula \begin{equation}
+KK_{a}T_{i}=\dfrac{T}{T_{i}}+KK_{a}T_{i}-1\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+T_{i}=T\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus we have
+\begin_inset Formula \begin{equation}
+2\zeta_{4}\omega_{4}=a+r=\dfrac{1+KK_{a}K_{f}}{T}-\dfrac{1}{T_{i}}=\dfrac{KK_{a}K_{f}}{T}\,,\end{equation}
+
+\end_inset
+
+and 
+\begin_inset Formula \begin{equation}
+\omega_{4}^{2}=b+ar+r^{2}=\dfrac{1}{T_{i}^{2}}+\dfrac{KK_{a}T_{i}-1}{TT_{i}}=\dfrac{KK_{a}T}{T^{2}}=\dfrac{KK_{a}}{T}\,,\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+\zeta_{4}=\dfrac{K_{f}}{2}\sqrt{\dfrac{KK_{a}}{T}}\,,\end{equation}
+
+\end_inset
+
+ and 
+\begin_inset Formula \begin{equation}
+\omega_{4}=\sqrt{\dfrac{KK_{a}}{T}}\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the constrain 
+\begin_inset Formula \begin{equation}
+\left|-\dfrac{a+r}{2}\right|\ll\left|-\dfrac{1}{T_{i}}\right|=\dfrac{1}{T}\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+\dfrac{KK_{a}K_{f}}{2T}\ll\dfrac{1}{T}\end{equation}
+
+\end_inset
+
+ that is 
+\begin_inset Formula \begin{equation}
+KK_{a}K_{f}\ll2\,.\label{eq:KaKfconstrain}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Facts:
+\end_layout
+
+\begin_layout Itemize
+Choose 
+\begin_inset Formula $T_{i}\approx T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+As 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ increases, the natural frequency gets larger.
+ From 
+\begin_inset Formula $0.4\leq\zeta_{4}\leq0.8$
+\end_inset
+
+, we have 
+\begin_inset Formula \begin{equation}
+0.4\leq\dfrac{K_{f}}{2}\sqrt{\dfrac{KK_{a}}{T}}=\dfrac{KK_{a}K_{f}}{2\sqrt{TKK_{a}}}\leq0.8\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+0.8\sqrt{TKK_{a}}\leq KK_{a}K_{f}\leq1.6\sqrt{TKK_{a}}\,.\end{equation}
+
+\end_inset
+
+ Hence, to satisfy satisfy the constrain given by Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:KaKfconstrain"
+
+\end_inset
+
+, choose 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ as 
+\begin_inset Formula \begin{equation}
+1.6\sqrt{TKK_{a}}\ll2\end{equation}
+
+\end_inset
+
+ or 
+\begin_inset Formula \begin{equation}
+K_{a}\ll\dfrac{1}{0.64TK}\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+When 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ is fixed, adjust 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+ to give a good 
+\begin_inset Formula $\zeta_{2}$
+\end_inset
+
+ at range 
+\begin_inset Formula $0.4\sim0.8$
+\end_inset
+
+ and satisfy the constrain given by Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:KaKfconstrain"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Position feedback servo with PID control
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PID0"
+
+\end_inset
+
+ shows the block diagram for the position feedback servo with PID control.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/PID0.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for position feedback servo with PID control.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PID0"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+G_{5}(s)=\dfrac{\theta_{o}(s)}{\theta_{i}(s)}=\dfrac{K_{a}(1+\dfrac{1}{T_{i}s}+T_{d}s)G_{o}(s)}{1+K_{a}(1+\dfrac{1}{T_{i}s}+T_{d}s)G_{o}(s)}\,,\label{eq:TFPID0}\end{equation}
+
+\end_inset
+
+where the open-loop transfer function 
+\begin_inset Formula \begin{eqnarray}
+G_{o}(s) & = & \dfrac{K}{s(1+Ts)}\,.\label{eq:GoPID}\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PID1"
+
+\end_inset
+
+ shows the block diagram for the position feedback servo with PID control.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/PID1.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for position feedback servo with PID control.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PID1"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The closed-loop transfer function of the system can be reduced as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+G_{5}(s)=\dfrac{\theta_{o}(s)}{\theta_{i}(s)}=\dfrac{K_{a}(1+\dfrac{1}{T_{i}s})G_{o}(s)}{1+K_{a}(1+\dfrac{1}{T_{i}s}+T_{d}s)G_{o}(s)}\,.\label{eq:TFPID1}\end{equation}
+
+\end_inset
+
+ where system gain 
+\begin_inset Formula \begin{equation}
+K_{5}=1\,.\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the motor is a Type I system, i.e., 
+\begin_inset Formula $G(s)$
+\end_inset
+
+ has a singular zero pole.
+\end_layout
+
+\begin_layout Standard
+From Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PID1"
+
+\end_inset
+
+, We can reconstruct the equivalent system block diagrame as shown in the
+ following figure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/PID2.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The block diagram for position feedback servo with PID control.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PID2"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus, the compensated open-loop system transfer function is given by
+\begin_inset Formula \begin{eqnarray}
+G_{oc}(s) & = & (1+\dfrac{1}{T_{i}s})\dfrac{\dfrac{KK_{a}}{s(1+Ts)}}{1+\dfrac{KK_{a}T_{d}s}{s(1+Ts)}}=\dfrac{1+T_{i}s}{T_{i}s}\cdot\dfrac{KK_{a}}{KK_{a}T_{d}s+s(1+Ts)}\nonumber \\
+ & = & \dfrac{KK_{a}}{T_{i}}\cdot\dfrac{1+T_{i}s}{s^{2}(1+KK_{a}T_{d}+Ts)}\nonumber \\
+ & = & \dfrac{KK_{a}}{T_{i}(1+KK_{a}T_{d})}\cdot\dfrac{1+T_{i}s}{s^{2}(1+\dfrac{T}{1+KK_{a}T_{d}}s)}\\
+ & = & \dfrac{K_{oc}(1+s/\omega_{oc2})}{s^{2}(1+s/\omega_{oc3})}\,,\label{eq:PIDCompensatedGo}\end{eqnarray}
+
+\end_inset
+
+ where 
+\begin_inset Formula \begin{equation}
+K_{oc}=\dfrac{KK_{a}}{T_{i}(1+KK_{a}T_{d})}\,,\label{eq:pidpara1}\end{equation}
+
+\end_inset
+
+ 
+\begin_inset Formula \begin{equation}
+\omega_{oc2}=\dfrac{1}{T_{oc2}}=\dfrac{1}{T_{i}}\,,\label{eq:pidpara2}\end{equation}
+
+\end_inset
+
+ and 
+\begin_inset Formula \begin{equation}
+\omega_{oc3}=\dfrac{1}{T_{oc3}}=\dfrac{1+KK_{a}T_{d}}{T}\,.\label{eq:pidpara3}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PIDCompensatedGo"
+
+\end_inset
+
+, we see that the compensated open-loop system is a typical Type II system.
+ Therefore we can obtain the parameters of the PID controller using frequency-re
+sponse methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/PIDBode.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+An example of PID controller design based on Bode plot.
+ The red lines represent the bode plot of the original open-loop system.
+ The blue lines represent the Bode plot of the compensated open-loop system.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PIDBode"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PIDBode"
+
+\end_inset
+
+ gives an example of the design procedure.
+ Suppose that the original open-loop system is
+\begin_inset Formula \begin{equation}
+KG(s)=\dfrac{4}{s(1+2s)}\,.\end{equation}
+
+\end_inset
+
+ The bode plot of it is represented by the red line.
+ We can now design our PID compensator 
+\begin_inset Formula $D(s)$
+\end_inset
+
+ as follows,
+\end_layout
+
+\begin_layout Itemize
+According to the low-frequency system performance requirement (steady state
+ error), determine the low-frequency gain (bode gain), 
+\begin_inset Formula $K_{oc}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Accoding to the system dynamic performance requirement, determine the crossover
+ frequency at which the phase margin is acceptable.
+ The crossover frequency determines bandwidth, rise time and settling time,
+ while the phase margin determines the damping ratio and the overshoot.
+\end_layout
+
+\begin_layout Itemize
+Determine the high-frequency part of the bode plot to satisfy the system
+ performance requirement in this part.
+ (Lower gain is better, because noise and disturbance are usually high-frequency
+ signals.)
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, the compensated open-loop system becomes 
+\begin_inset Formula \begin{equation}
+KD(s)G(s)=\dfrac{4(1+s)}{s^{2}(1+0.1s)}\,.\end{equation}
+
+\end_inset
+
+ The bode plot of this system is represented by the blue lines in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PIDBode"
+
+\end_inset
+
+.
+ Then the parameters of PID controller can be calculated from Equations
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pidpara1"
+
+\end_inset
+
+--
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pidpara3"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The design procedure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Some Keywords
+\end_layout
+
+\begin_layout Itemize
+tacho
+\end_layout
+
+\begin_layout Itemize
+decay
+\end_layout
+
+\begin_layout Itemize
+armature
+\end_layout
+
+\begin_layout Itemize
+attenuator
+\end_layout
+
+\begin_layout Itemize
+inertia
+\end_layout
+
+\begin_layout Itemize
+inertia load
+\end_layout
+
+\begin_layout Itemize
+friction
+\end_layout
+
+\begin_layout Itemize
+friction load
+\end_layout
+
+\begin_layout Itemize
+torque
+\end_layout
+
+\begin_layout Itemize
+tachogenerator
+\end_layout
+
+\begin_layout Itemize
+potentiometer
+\end_layout
+
+\begin_layout Itemize
+PID, Proportional Integral Derivative
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Section*
+Tmp
+\end_layout
+
+\begin_layout Standard
+A bug of asmmath, can be fixed by mathtools
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+\begin{gathered}{}[p]=100\\
+{}[v]=200\end{gathered}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

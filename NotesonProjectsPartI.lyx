@@ -1,0 +1,444 @@
+#LyX 1.6.8 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass DJespcrc1
+\begin_preamble
+%\input{DJcommonpk-phd1-pgf-en}
+%\input{DJcommonpk-pgf-en}
+
+% Definition of command \djphd
+\input{DJ4DJespcrc}
+
+% Commonly used mathematical macro
+%\input{DJcommonmath}
+% identification
+%\readRCS $Id: ModifiedFICA.tex,v 0.01 2009/06/15 15:20:11 Exp $
+%\ProvidesFile{ModifiedFICA.tex}[\filedate \space v\fileversion
+%     \space DJElsevier 1-column CRC Author Instructions]
+\readRCS $Id: DJACS220Notes.tex,v 0.01 2010/02/20 15:20:11 Exp $
+\ProvidesFile{DJACS220Notes.tex}[\filedate \space v\fileversion
+     \space DJElsevier 1-column CRC Author Instructions]
+
+
+
+% This package is not declared in DJespcrc1.sty
+%\usepackage[numbers, sort&compress]{natbib}
+% pdfsync.sty allows one to synchronize between LaTeX source and pdf output
+%\usepackage{pdfsync}
+
+
+
+
+% change this to the following line for use with LaTeX2.09
+% \documentstyle[12pt,twoside,fleqn,espcrc1]{article}
+% if you want to include PostScript figures
+%\usepackage{graphicx}
+% if you have landscape tables
+%\usepackage[figuresright]{rotating}
+% Put all the style files and packages you want here
+% Load DJ-defined report packages
+\input{DJReportLoadAll}
+
+%\usepackage{amsmath}
+
+\usepackage{mathtools}
+
+\usepackage{djschemabloc}
+
+
+\usetikzlibrary{circuits}
+
+
+
+
+%\renewcommand{\jot}{2\jot}
+
+% For command \textdegree, \textcelsius, ect.
+
+\DeclareMathOperator \J {J}
+
+\ifpdf
+\graphicspath{{./}{./Fig/pdf/}{./Fig/}}
+\else
+\graphicspath{{./}{./Fig/eps/}{./Fig/}}
+\fi
+\end_preamble
+\use_default_options true
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Notes on Inverted Pendulum System Laboratory
+\end_layout
+
+\begin_layout Author
+Dazhi Jiang
+\end_layout
+
+\begin_layout RunTitle
+Notes on Inverted Pendulum System Laboratory
+\end_layout
+
+\begin_layout RunAuthor
+Dazhi Jiang
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+This document includes some notes on the inverted pendulum system laboratory
+ (ACS220).
+\end_layout
+
+\begin_layout Section
+Notes
+\end_layout
+
+\begin_layout Subsection
+The model of inverted pendulum system
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MotorModel"
+
+\end_inset
+
+ shows the simplified block diagram of control system for armature controlled
+ motor
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{block} = [draw, fill=blue!20, rectangle,      minimum height=3em,
+ minimum width=6em] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{input} = [coordinate] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{output} = [coordinate] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% The block diagram code is probably more verbose than necessary 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[auto, node distance=2cm,>=latex', every node/.style={font=
+\backslash
+small}]
+\end_layout
+
+\begin_layout Plain Layout
+
+    % We start by placing the blocks
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [input, name=input] {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [sum, right of=input] (sum) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+% node [block, right of=sum] (controller) {Controller};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [block, right of=sum] (system) {$
+\backslash
+dfrac{K}{1+sT}$};
+\end_layout
+
+\begin_layout Plain Layout
+
+    % We draw an edge between the controller and system block to
+\end_layout
+
+\begin_layout Plain Layout
+
+    % calculate the coordinate u.
+ We need it to place the measurement block.
+\end_layout
+
+\begin_layout Plain Layout
+
+    % 
+\backslash
+draw [->] (controller) -- node[name=u] {$u$} (system);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [output, right of=system] (output) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node [coordinate, below={1em of system}] (measurements) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    % Once the nodes are placed, connecting them is easy.
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [draw,->] (input) -- node {$r$} (sum);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [->] (sum) -- node {$e$} (system);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [->] (system) -- node [name=y] {$y$}(output);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw (y) |- (measurements);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw [->] (measurements) -| node[pos=0.95] {$-$} (sum); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The simplified block diagram of control system for armature controlled motor
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ICAvsMICAcorr"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !ht
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Fig/Motor_Model.pdf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The simplified block diagram of control system for armature controlled motor
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MotorModel"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Some Keywords
+\end_layout
+
+\begin_layout Itemize
+inverted pendulum
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Section*
+Tmp
+\end_layout
+
+\begin_layout Standard
+A bug of asmmath, can be fixed by mathtools
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+\begin{gathered}{}[p]=100\\
+{}[v]=200\end{gathered}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
