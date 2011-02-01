@@ -47,9 +47,19 @@
 \usepackage{djschemabloc}
 
 
-\usetikzlibrary{circuits}
+\usetikzlibrary{circuits,%
+    intersections,%
+    scopes, arrows, fadings, patterns,%
+    decorations.pathreplacing,%
+    decorations.pathmorphing,%
+    positioning,
+}
 
 
+\usepackage{pgfplots}
+\input{defpgfexternal.tex}
+
+\setpgfexternalmainfile{NotesonProjectsPartI}
 
 
 %\renewcommand{\jot}{2\jot}
@@ -136,6 +146,10 @@ Notes
 The model of inverted pendulum system
 \end_layout
 
+\begin_layout Subsubsection
+Schematic diagram
+\end_layout
+
 \begin_layout Standard
 Figure
 \begin_inset space ~
@@ -144,12 +158,11 @@ Figure
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:MotorModel"
+reference "fig:InvertedPendulum"
 
 \end_inset
 
- shows the simplified block diagram of control system for armature controlled
- motor
+ shows a schematic drawing of the inverted pendulum system.
 \end_layout
 
 \begin_layout Standard
@@ -161,12 +174,12 @@ status open
 placement !ht
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -380,16 +393,35 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename Fig/Motor_Model.pdf
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{external/export=true}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{Fig/Src/InvertedPendulum.tikz}
+\end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Caption
 
 \begin_layout Plain Layout
-The simplified block diagram of control system for armature controlled motor
+A schematic diagram of the inverted pendulum system.
+ 
 \end_layout
 
 \end_inset
@@ -397,12 +429,244 @@ The simplified block diagram of control system for armature controlled motor
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:MotorModel"
+name "fig:InvertedPendulum"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Equations of motion
+\end_layout
+
+\begin_layout Standard
+The motion of the cart in the horizontal direction (
+\begin_inset Formula $x$
+\end_inset
+
+-direction) is described by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+M\ddot{x}+b\dot{x}+\vv{N}=\vv{F},\label{eq:CartMotion}\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\vv{N}$
+\end_inset
+
+ is an unknown reaction force applied by the pendulum in the 
+\begin_inset Formula $x$
+\end_inset
+
+-direction, which is given by
+\begin_inset Formula \begin{equation}
+\vv{N}=m\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^{2}\sin\theta.\label{eq:ReactionForcex}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The motion of the pendulum is described by
+\begin_inset Formula \begin{equation}
+(I+ml^{2})\ddot{\theta}+mgl\sin\theta=-ml\ddot{x}\cos\theta.\label{eq:PendulumMotion}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By combining Equations
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:CartMotion"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ReactionForcex"
+
+\end_inset
+
+, 
+\begin_inset Formula $\vv{N}$
+\end_inset
+
+ can be eliminated to yield
+\begin_inset Formula \begin{equation}
+(M+m)\ddot{x}+b\dot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^{2}\sin\theta=\vv{F}.\label{eq:CartMotionNoN}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Linearisation
+\end_layout
+
+\begin_layout Standard
+Equations
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PendulumMotion"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:CartMotionNoN"
+
+\end_inset
+
+ are the nonlinear differential equations and can be linearised around their
+ equilibrium points.
+ Assume 
+\begin_inset Formula $\theta=\pi+\theta'$
+\end_inset
+
+ around the unstable equilibrium of the system (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ie
+\end_layout
 
 \end_inset
 
  
+\begin_inset Formula $\theta\approx\pi$
+\end_inset
+
+ or 
+\begin_inset Formula $\theta'\approx0$
+\end_inset
+
+), where 
+\begin_inset Formula $\theta'$
+\end_inset
+
+ represents motion from the vertical upward direction.
+ Let 
+\begin_inset Formula $\cos\theta\approx-1$
+\end_inset
+
+, 
+\begin_inset Formula $\sin\theta\approx-\theta'$
+\end_inset
+
+, and 
+\begin_inset Formula $\dot{\theta}^{2}\approx0$
+\end_inset
+
+.
+ Thus, Equations
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PendulumMotion"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:CartMotionNoN"
+
+\end_inset
+
+ are approximated by
 \end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+(I+ml^{2})\ddot{\theta'}-mgl\theta' & = & ml\ddot{x},\label{eq:LinearPM}\\
+(M+m)\ddot{x}+b\dot{x}-ml\ddot{\theta'} & = & \vv{F}.\label{eq:LinearCM}\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Laplace transform
+\end_layout
+
+\begin_layout Standard
+By applying the Laplace transform to both sides of the Equations
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:LinearPM"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:LinearCM"
+
+\end_inset
+
+ , we obtain
+\begin_inset Formula \begin{eqnarray}
+(I+ml^{2})s^{2}\Theta(s)-mgl\Theta(s) & = & mls^{2}X(s),\\{}
+[(M+m)s^{2}+bs]X(s)-mls^{2}\Theta(s) & = & F(s),\end{eqnarray}
+
+\end_inset
+
+where assume all the initial conditions to be zero.
+ Thus the transfer function from the control input, 
+\begin_inset Formula $\vv{F}$
+\end_inset
+
+, to the output, 
+\begin_inset Formula $\theta'$
+\end_inset
+
+ is given by
+\begin_inset Formula \begin{eqnarray}
+\frac{\Theta'(s)}{F(s)} & = & \frac{mls^{2}}{[(M+m)(I+ml^{2})-m^{2}l^{2}]s^{4}+b(I+ml^{2})s^{3}-mgl(M+m)s^{2}-bmgls}\\
+ & = & \frac{mls}{[(M+m)(I+ml^{2})-m^{2}l^{2}]s^{3}+b(I+ml^{2})s^{2}-mgl(M+m)s-bmgl}\\
+ & = & \frac{\dfrac{ml}{C}s}{s^{3}+\dfrac{b(I+ml^{2})}{C}s^{2}-\dfrac{mgl(M+m)}{C}s-\dfrac{bmgl}{C}},\end{eqnarray}
+
+\end_inset
+
+ where 
+\begin_inset Formula \begin{equation}
+C=(M+m)(I+ml^{2})-m^{2}l^{2}.\end{equation}
 
 \end_inset
 

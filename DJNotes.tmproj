@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Fig/Src/InversePendulum.tex</string>
+	<string>NotesonProjectsPartI.tex</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -74,13 +74,35 @@
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>defpgfexternal.tex</string>
+			<key>lastUsed</key>
+			<date>2011-02-01T16:48:06Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>README</string>
+			<key>lastUsed</key>
+			<date>2011-02-01T16:34:07Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>.gitignore</string>
 			<key>lastUsed</key>
-			<date>2011-01-31T22:30:41Z</date>
+			<date>2011-02-01T18:25:33Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>Fig/Src/InvertedPendulum.tikz</string>
+			<key>lastUsed</key>
+			<date>2011-02-01T17:04:05Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>NotesonProjectsPartI.tex</string>
+			<key>lastUsed</key>
+			<date>2011-02-01T18:25:33Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -92,38 +114,130 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>8</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>5</integer>
+				<integer>7</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>Fig/Src/DJACS220NotesFigTmp.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>145</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>92</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>26</integer>
+				<key>line</key>
+				<integer>145</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>145</integer>
+			</dict>
 		</dict>
 		<key>Fig/Src/InversePendulum.tex</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>12</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>116</integer>
+				<integer>51</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>37</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>19</integer>
+				<key>line</key>
+				<integer>51</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>51</integer>
+			</dict>
+		</dict>
+		<key>Fig/Src/InvertedPendulum.tikz</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>15</integer>
+				<key>line</key>
+				<integer>80</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>108</integer>
+			<integer>76</integer>
+		</dict>
+		<key>NotesonProjectsPartI.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>29</integer>
+				<key>line</key>
+				<integer>43</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>23</integer>
+		</dict>
+		<key>defpgfexternal.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>.gitignore</string>
 		<string>Fig/Src/InversePendulum.tex</string>
+		<string>Fig/Src/InvertedPendulum.tikz</string>
+		<string>NotesonProjectsPartI.tex</string>
+		<string>defpgfexternal.tex</string>
+		<string>Fig/Src/DJACS220NotesFigTmp.tex</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
 	<key>windowFrame</key>
-	<string>{{256, 10}, {1024, 768}}</string>
+	<string>{{1280, 32}, {1024, 768}}</string>
 </dict>
 </plist>

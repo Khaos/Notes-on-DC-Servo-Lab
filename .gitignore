@@ -3,6 +3,10 @@
 tmp
 recycle
 
+*Noteson*.*
+!Noteson*.tex
+!Noteson*.lyx
+
 Fig/Src/*.log
 Fig/Src/*.*
 !Fig/Src/*.tex
@@ -11,5 +15,6 @@ Fig/Src/DJACS220NotesFigTmp.*
 !Fig/Src/DJACS220NotesFigTmp.tex
 Fig/Src/gnuplot
 Fig/gnuplot
+Fig/pdf
 
 Ref/Inverted\ Pendulum

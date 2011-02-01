@@ -55,7 +55,7 @@
 
 \usetikzlibrary{intersections} 
 
-\usetikzlibrary{fadings, patterns}
+\usetikzlibrary{scopes, arrows, fadings, patterns}
 
 \usetikzlibrary{%
     decorations.pathreplacing,%
@@ -111,8 +111,10 @@
 		% border decoration is drawn *after* the original path.
 		postaction={draw, decorate, decoration={border, angle=-45,
 					amplitude=0.3cm, segment length=2mm}}},
-	helparrow/.style={>=latex', draw=blue, fill=blue, very thick},
-	force/.style={>=latex', draw=blue, fill=blue, ultra thick},
+	helparrow/.style={>=latex', blue, thick},
+	% helparrow/.style={>=latex', draw=blue, fill=blue, very thick},
+	helpline/.style={thin, black!90, opacity=0.5},
+	force/.style={>=stealth, draw=blue, fill=blue, ultra thick},
 }
 
 \def\ground{%
@@ -127,6 +129,8 @@
 	\filldraw [%thick,%
 		draw = black!80,%
 		fill = black!40,%
+		top color = black!10,%
+		bottom color = black!40,%
 		% pattern=horizontal lines gray,%
 		] (0,0) rectangle (30mm, 10mm);
 	\node at (15mm, 5mm) {$M$};
@@ -136,7 +140,9 @@
 \def\pendulum{%
 	\filldraw [%thick,%
 		draw = black!80,%
-		fill = black!25,%
+		% fill = black!25,%
+		left color=black!10,%
+		bottom color=black!40,%
 		% pattern=horizontal lines gray,%
 		] (-0.8mm, 0) rectangle (0.8mm, 20mm);
 }
@@ -165,8 +171,9 @@
 
 
 %\tikzsetnextfilename{PIDBode}
-\begin{tikzpicture}[> = latex', %
-					scale = 1.5]
+\begin{tikzpicture}[> = latex',%
+					scale = 1.5,%
+					text = blue]
 	\begin{scope}
 		\wheel
 	\end{scope}
@@ -180,14 +187,16 @@
 		\cart
 	\end{scope}
 	\begin{scope}[shift = {(9mm, 12.4mm)}]
-		\draw [thin, blue!70, opacity=0.5] (0, -20mm) -- (0, 20mm);
-		\draw [->, helparrow, shorten >=0.8mm] (0, 18mm) 
-			arc [radius=18mm, start angle=90, delta angle=20] ;
-		\node at (97:21mm) {$\theta'$};
-		\node [above left] at (120:15mm) {$m$, $I$};
-		% \draw [->, helparrow, shorten >=0.8mm] (0, 18mm) 
-		% 	arc [radius=18mm, start angle=90, delta angle=20] ;
-		% \node at (97:22mm) {$\theta'$};
+		\draw [helpline] (0, -20mm) -- (0, 25mm);
+		\draw [helpline] (110:20.5mm) -- (110:25mm);
+		\draw [|->, helparrow] (0, 23mm) 
+			arc [radius=23mm, start angle=90, delta angle=20] ;
+		\node at (97:25mm) {$\theta'$};
+		\draw [|->, helparrow] (0, -9mm) 
+			arc [radius=9mm, start angle=-90, delta angle=195] ;
+		\node [above right] at (50:8.5mm) {$\theta$};
+		\draw [thin] (110:14mm) -- (-10mm, 10mm) 
+			node [left] {$m$, $I$};
 	\end{scope}
 	\begin{scope}[shift = {(9mm, 12.4mm)}, rotate=20]
 		\pendulum
@@ -197,5 +206,40 @@
 	\end{scope}
 \end{tikzpicture}
 
+
+\begin{tikzpicture}[> = latex',%
+					scale = 1,%
+					text = blue]
+	\begin{scope}
+		\wheel
+	\end{scope}
+	\begin{scope}[xshift=18mm]
+		\wheel
+	\end{scope}
+	\begin{scope}[xshift=-31mm, yshift=-2.4mm]
+		\ground
+	\end{scope}
+	\begin{scope}[shift = {(-6mm, 2.4mm)}]
+		\cart
+	\end{scope}
+	\begin{scope}[shift = {(9mm, 12.4mm)}]
+		\draw [helpline] (0, -20mm) -- (0, 25mm);
+		\draw [helpline] (110:20.5mm) -- (110:25mm);
+		\draw [|->, helparrow] (0, 23mm) 
+			arc [radius=23mm, start angle=90, delta angle=20] ;
+		\node at (97:25mm) {$\theta'$};
+		\draw [|->, helparrow] (0, -9mm) 
+			arc [radius=9mm, start angle=-90, delta angle=195] ;
+		\node [above right] at (50:8.5mm) {$\theta$};
+		\draw [thin] (110:14mm) -- (-10mm, 10mm) 
+			node [left] {$m$, $I$};
+	\end{scope}
+	\begin{scope}[shift = {(9mm, 12.4mm)}, rotate=20]
+		\pendulum
+	\end{scope}
+	\begin{scope}[shift = {(9mm, 12.4mm)}]
+		\joint
+	\end{scope}
+\end{tikzpicture}
 
 \end{document}
