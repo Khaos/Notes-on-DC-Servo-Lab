@@ -4,8 +4,9 @@ tmp
 recycle
 
 Fig/Src/*.log
-Fig/Src/DJACS220NotesFig.*
-!Fig/Src/DJACS220NotesFig.tex
+Fig/Src/*.*
+!Fig/Src/*.tex
+!Fig/Src/*.tikz
 Fig/Src/DJACS220NotesFigTmp.*
 !Fig/Src/DJACS220NotesFigTmp.tex
 Fig/Src/gnuplot

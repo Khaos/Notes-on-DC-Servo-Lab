@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>Fig/Src/InversePendulum.tex</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -13,6 +15,8 @@
 			<string>Alg</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>Fig</string>
 			<key>regexFolderFilter</key>
@@ -72,14 +76,54 @@
 			<key>filename</key>
 			<string>README</string>
 		</dict>
+		<dict>
+			<key>filename</key>
+			<string>.gitignore</string>
+			<key>lastUsed</key>
+			<date>2011-01-31T22:30:41Z</date>
+		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>200</integer>
 	<key>metaData</key>
-	<dict/>
+	<dict>
+		<key>.gitignore</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>8</integer>
+				<key>line</key>
+				<integer>5</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>Fig/Src/InversePendulum.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>116</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>108</integer>
+		</dict>
+	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>.gitignore</string>
+		<string>Fig/Src/InversePendulum.tex</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
 	<key>windowFrame</key>
-	<string>{{18, 10}, {1024, 768}}</string>
+	<string>{{256, 10}, {1024, 768}}</string>
 </dict>
 </plist>
