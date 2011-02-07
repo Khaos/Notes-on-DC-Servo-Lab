@@ -55,7 +55,9 @@
 
 \usepackage{mathtools}
 
-\usepackage{djschemabloc}
+\usepackage{siunitx}
+
+% \usepackage{djschemabloc}
 
 
 \usetikzlibrary{circuits,%
@@ -71,6 +73,17 @@
 \input{defpgfexternal.tex}
 
 \setpgfexternalmainfile{NotesonProjectsPartI}
+
+\usepackage[style=altlong4colheader,toc]{glossaries}
+
+\setlength{\glsdescwidth}{0.5\textwidth}
+\setlength{\glspagelistwidth}{0.15\textwidth}
+
+\makeglossaries
+
+\renewcommand*{\glsgroupskip}{}
+
+\loadglsentries{NotesonProjectsPartI-Znotation}
 
 
 %\renewcommand{\jot}{2\jot}
@@ -126,7 +139,7 @@ inverted pendulum system.
 %
 \begin{figure}[!ht]
 \begin{centering}
-\tikzset{external/export=true}
+%\tikzset{external/export=true}
 \input{Fig/Src/InvertedPendulum.tikz}
 \par\end{centering}
 
@@ -179,8 +192,8 @@ are approximated by
 
 By applying the Laplace transform to both sides of the Equations~\ref{eq:LinearPM}
 and \ref{eq:LinearCM} , we obtain\begin{eqnarray}
-(I+ml^{2})s^{2}\Theta(s)-mgl\Theta(s) & = & mls^{2}X(s),\\{}
-[(M+m)s^{2}+bs]X(s)-mls^{2}\Theta(s) & = & F(s),\end{eqnarray}
+(I+ml^{2})s^{2}\Theta(s)-mgl\Theta(s) & = & mls^{2}X(s),\\
+{}[(M+m)s^{2}+bs]X(s)-mls^{2}\Theta(s) & = & F(s),\end{eqnarray}
 where assume all the initial conditions to be zero. Thus the transfer
 function from the control input, $\vv{F}$, to the output, $\theta'$
 is given by\begin{eqnarray}
@@ -198,6 +211,12 @@ C=(M+m)(I+ml^{2})-m^{2}l^{2}.\end{equation}
 \end{itemize}
 
 \section{Conclusions}
+
+{
+\renewcommand{\arraystretch}{1.1} % Vertical space between table lines
+\renewcommand*{\symbolname}{Value}
+\printglossary[title=List of Notations, toctitle=List of Notations]
+}
 
 
 \section*{Tmp}

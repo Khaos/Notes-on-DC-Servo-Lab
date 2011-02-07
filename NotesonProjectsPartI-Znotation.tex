@@ -1,0 +1,71 @@
+%% -*- Mode: LaTeX Memoir; tab-width: 4;
+
+%% NotesonProjectsPartI-Znotation.tex    Notations
+%% Notations for glossary
+%% MAIN FILE: NotesonProjectsPartI.tex
+%% Created by Dazhi Jiang, 2011-02-02 08:00:45 +0000 (Wed,  2 Feb 2011)
+%% Copyright (c) 2011 Dazhi Jiang. All Rights Reserved. 
+
+%% TextMate Settings
+%!TEX root = NotesonProjectsPartI.tex
+
+\newglossaryentry{M}{name={\ensuremath{M}},%
+	sort=mc,%
+	description={mass of the cart},%
+	symbol={\SI{1.22}{\kilogram}}%
+}
+
+\newglossaryentry{m}{name={\ensuremath{m}},%
+	sort=mp,%
+	description={mass of the pendulum},%
+	symbol={\SI{0.12}{\kilogram}}%
+}
+
+\newglossaryentry{b}{name={\ensuremath{b}},%
+	sort=b,%
+	description={friction of the cart},%
+	symbol={\SI[group-digits = false]{2.28133}{\newton}}%
+}
+
+\newglossaryentry{l}{name={\ensuremath{l}},%
+	sort=l,%
+	description={length to pendulum centre of mass},%
+	symbol={\SI{0.146}{\metre}}%
+}
+
+\newglossaryentry{I}{name={\ensuremath{I}},%
+	sort=I,%
+	description={inertia of the pendulum},%
+	symbol={\SI[group-digits = false]{0.0139231}{\kilogram\square\metre}}%
+}
+
+%% !!! Comment
+%%     Since the command \vv is fragile, put \protect before to avoid the
+%%     error.
+\def\inputforce{\protect\vv{F}}
+% \newcommand{\inputforce}{\noexpand\vv{F}}
+% \newcommand{\inputforce}{\vv{F}}
+% \newglossaryentry{F}{name={\ensuremath{F}},%
+\newglossaryentry{F}{name={\ensuremath{\inputforce}},%
+	sort=F,%
+	description={force applied to the cart},%
+	symbol={$\cdot$~\si{\newton}}%
+}
+
+\newglossaryentry{x}{name={\ensuremath{x}},%
+	sort=x,%
+	description={cart position coordinate},%
+	symbol={$\cdot$~\si{\metre}}%
+}
+
+\newglossaryentry{theta}{name={\ensuremath{\theta}},%
+	sort=theta,%
+	description={pendulum angle from the vertical downward direction},%
+	symbol={$\cdot$~\si{\radian}}%
+}
+
+\newglossaryentry{thetaa}{name={\ensuremath{\theta'}},%
+	sort=thetaa,%
+	description={pendulum angle from the vertical upward direction},%
+	symbol={$\cdot$~\si{\radian}}%
+}

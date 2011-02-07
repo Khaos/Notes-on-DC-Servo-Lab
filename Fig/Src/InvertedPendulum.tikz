@@ -28,7 +28,8 @@
 	\fill [black!20] (49mm, 0) rectangle (80mm, -5mm);
 	\draw [thick, black!80, interface] (0, 0) -- (80mm, 0);
 	\draw [thick, black!80] (49mm, 0) -- +(0, -13mm);
-	\draw [|->, helparrow] (49mm, -9mm) -- ++(20mm, 0) node [right] {$x$};
+	\draw [|->, helparrow] (49mm, -9mm) -- ++(20mm, 0) node [right] {$\gls{x}$};
+	% \draw [|->, helparrow] (49mm, -9mm) -- ++(20mm, 0) node [right] {$x$};
 }
 
 \def\cart{
@@ -39,8 +40,10 @@
 		bottom color = black!40,%
 		% pattern=horizontal lines gray,%
 		] (0,0) rectangle (30mm, 10mm);
-	\node at (15mm, 5mm) {$M$};
-	\draw[->, force] (-15mm, 5mm) node [above] {$\vv{F}$} -- (0, 5mm);
+	\node at (15mm, 5mm) {$\gls{M}$};
+	\draw[->, force] (-15mm, 5mm) node [above] {$\gls{F}$} -- (0, 5mm);
+	% \draw[->, force] (-15mm, 5mm) node [above] {$\vv{\gls{F}}$} -- (0, 5mm);
+	% \draw[->, force] (-15mm, 5mm) node [above] {$\vv{F}$} -- (0, 5mm);
 }
 
 \def\pendulum{%
@@ -97,12 +100,12 @@
 		\draw [helpline] (110:20.5mm) -- (110:25mm);
 		\draw [|->, helparrow] (0, 23mm) 
 			arc [radius=23mm, start angle=90, delta angle=20] ;
-		\node at (97:25mm) {$\theta'$};
+		\node at (97:25mm) {$\gls{thetaa}$};
 		\draw [|->, helparrow] (0, -9mm) 
 			arc [radius=9mm, start angle=-90, delta angle=195] ;
-		\node [above right] at (50:8.5mm) {$\theta$};
+		\node [above right] at (50:8.5mm) {$\gls{theta}$};
 		\draw [thin] (110:14mm) -- (-10mm, 10mm) 
-			node [left] {$m$, $I$};
+			node [left] {$\gls{m}$, $\gls{I}$};
 	\end{scope}
 	\begin{scope}[shift = {(9mm, 12.4mm)}, rotate=20]
 		\pendulum

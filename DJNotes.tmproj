@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>NotesonProjectsPartI.tex</string>
+	<string>Makefile</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -86,23 +86,35 @@
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>Makefile</string>
+			<key>lastUsed</key>
+			<date>2011-02-06T15:44:39Z</date>
+			<key>selected</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>.gitignore</string>
 			<key>lastUsed</key>
-			<date>2011-02-01T18:25:33Z</date>
+			<date>2011-02-02T08:18:27Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>Fig/Src/InvertedPendulum.tikz</string>
 			<key>lastUsed</key>
-			<date>2011-02-01T17:04:05Z</date>
+			<date>2011-02-02T08:29:21Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>NotesonProjectsPartI-Znotation.tex</string>
+			<key>lastUsed</key>
+			<date>2011-02-06T15:44:39Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>NotesonProjectsPartI.tex</string>
 			<key>lastUsed</key>
-			<date>2011-02-01T18:25:33Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2011-02-06T15:40:59Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -153,36 +165,6 @@
 				<integer>145</integer>
 			</dict>
 		</dict>
-		<key>Fig/Src/InversePendulum.tex</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>51</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>37</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>19</integer>
-				<key>line</key>
-				<integer>51</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>51</integer>
-			</dict>
-		</dict>
 		<key>Fig/Src/InvertedPendulum.tikz</key>
 		<dict>
 			<key>caret</key>
@@ -190,26 +172,54 @@
 				<key>column</key>
 				<integer>15</integer>
 				<key>line</key>
-				<integer>80</integer>
+				<integer>45</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>76</integer>
+			<integer>23</integer>
+		</dict>
+		<key>Makefile</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>38</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>NotesonProjectsPartI-Znotation.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>17</integer>
+				<key>line</key>
+				<integer>14</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>NotesonProjectsPartI.tex</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>29</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>43</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>23</integer>
+			<integer>25</integer>
 		</dict>
 		<key>defpgfexternal.tex</key>
 		<dict>
@@ -229,15 +239,16 @@
 	<key>openDocuments</key>
 	<array>
 		<string>.gitignore</string>
-		<string>Fig/Src/InversePendulum.tex</string>
+		<string>Makefile</string>
 		<string>Fig/Src/InvertedPendulum.tikz</string>
 		<string>NotesonProjectsPartI.tex</string>
+		<string>NotesonProjectsPartI-Znotation.tex</string>
 		<string>defpgfexternal.tex</string>
 		<string>Fig/Src/DJACS220NotesFigTmp.tex</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
 	<key>windowFrame</key>
-	<string>{{1280, 32}, {1024, 768}}</string>
+	<string>{{203, 10}, {1024, 768}}</string>
 </dict>
 </plist>

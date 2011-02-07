@@ -44,7 +44,9 @@
 
 \usepackage{mathtools}
 
-\usepackage{djschemabloc}
+\usepackage{siunitx}
+
+% \usepackage{djschemabloc}
 
 
 \usetikzlibrary{circuits,%
@@ -60,6 +62,17 @@
 \input{defpgfexternal.tex}
 
 \setpgfexternalmainfile{NotesonProjectsPartI}
+
+\usepackage[style=altlong4colheader,toc]{glossaries}
+
+\setlength{\glsdescwidth}{0.5\textwidth}
+\setlength{\glspagelistwidth}{0.15\textwidth}
+
+\makeglossaries
+
+\renewcommand*{\glsgroupskip}{}
+
+\loadglsentries{NotesonProjectsPartI-Znotation}
 
 
 %\renewcommand{\jot}{2\jot}
@@ -398,7 +411,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+%
 \backslash
 tikzset{external/export=true}
 \end_layout
@@ -642,8 +655,8 @@ reference "eq:LinearCM"
 
  , we obtain
 \begin_inset Formula \begin{eqnarray}
-(I+ml^{2})s^{2}\Theta(s)-mgl\Theta(s) & = & mls^{2}X(s),\\{}
-[(M+m)s^{2}+bs]X(s)-mls^{2}\Theta(s) & = & F(s),\end{eqnarray}
+(I+ml^{2})s^{2}\Theta(s)-mgl\Theta(s) & = & mls^{2}X(s),\\
+{}[(M+m)s^{2}+bs]X(s)-mls^{2}\Theta(s) & = & F(s),\end{eqnarray}
 
 \end_inset
 
@@ -683,6 +696,50 @@ inverted pendulum
 
 \begin_layout Section
 Conclusions
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.1} % Vertical space between table lines
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand*{
+\backslash
+symbolname}{Value}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+printglossary[title=List of Notations, toctitle=List of Notations]
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
