@@ -47,15 +47,21 @@
 % \newcommand{\inputforce}{\vv{F}}
 % \newglossaryentry{F}{name={\ensuremath{F}},%
 \newglossaryentry{F}{name={\ensuremath{\inputforce}},%
-	sort=F,%
+	sort=nF,%
 	description={force applied to the cart},%
 	symbol={$\cdot$~\si{\newton}}%
 }
 
 \newglossaryentry{x}{name={\ensuremath{x}},%
 	sort=x,%
-	description={cart position coordinate},%
+	description={cart position coordinate in the $x$-direction},%
 	symbol={$\cdot$~\si{\metre}}%
+}
+
+\newglossaryentry{xspeed}{name={\ensuremath{\dot{x}}},%
+	sort=xspeed,%
+	description={cart velocity in the $x$-direction},%
+	symbol={$\cdot$~\si{\metre\per\second}}%
 }
 
 \newglossaryentry{theta}{name={\ensuremath{\theta}},%

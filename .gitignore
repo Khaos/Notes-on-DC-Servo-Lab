@@ -17,4 +17,7 @@ Fig/Src/gnuplot
 Fig/gnuplot
 Fig/pdf
 
+Code/*.*
+!Code/*.m
+
 Ref/Inverted\ Pendulum

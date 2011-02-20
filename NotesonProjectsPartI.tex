@@ -1,8 +1,9 @@
-%% LyX 1.6.8 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 1.6.9 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[10pt,a4paper,british]{article}
 \usepackage[]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{booktabs}
 
 \makeatletter
 
@@ -10,6 +11,8 @@
 \pdfpageheight\paperheight
 \pdfpagewidth\paperwidth
 
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
  \usepackage[headings]{DJespcrc1}
@@ -38,6 +41,9 @@
 % pdfsync.sty allows one to synchronize between LaTeX source and pdf output
 %\usepackage{pdfsync}
 
+%% !!! Comment
+%%     The package 'xcolor' has to be loaded before the package 'pstricks'.
+\usepackage[svgnames]{xcolor}
 
 
 
@@ -66,6 +72,7 @@
     decorations.pathreplacing,%
     decorations.pathmorphing,%
     positioning,
+    shadows,
 }
 
 
@@ -140,11 +147,12 @@ inverted pendulum system.
 \begin{figure}[!ht]
 \begin{centering}
 %\tikzset{external/export=true}
+%\tikzsetnextfilename{InvertedPendulum}
 \input{Fig/Src/InvertedPendulum.tikz}
 \par\end{centering}
 
 \centering{}\caption{A schematic diagram of the inverted pendulum system. }
-\label{fig:InvertedPendulum}
+\label{fig:InvertedPendulum}%
 \end{figure}
 
 
@@ -204,6 +212,91 @@ is given by\begin{eqnarray}
 C=(M+m)(I+ml^{2})-m^{2}l^{2}.\end{equation}
 
 
+
+\subsubsection{Stability analysis}
+
+Substituting the value of given variables, the transfer function becomes\begin{equation}
+G(s)=\frac{\Theta'(s)}{F(s)}=\frac{0.8045s}{s^{3}+1.726s^{2}-10.58s-18}.\end{equation}
+Covert it to \emph{zeor-pole-gain} form,\begin{equation}
+G(s)=\frac{\Theta'(s)}{F(s)}=\frac{0.8045s}{(s-3.244)(s+3.277)(s+1.694)}.\end{equation}
+Clearly, the system is unstable.
+
+
+\subsubsection{Lead and Lag compensator}
+
+Assume the transfer function of lead (lag) compensator is\[
+C(s)=\frac{s+\alpha}{s+\beta},\]
+and for later convenience the system transfer function is\begin{equation}
+G(s)=\frac{\Theta'(s)}{F(s)}=\frac{ks}{s^{3}+a_{1}s+a_{2}s-a_{3}}.\end{equation}
+Thus the close-loop transfer function can be calculated by\begin{equation}
+G_{c}=\frac{ks(s+\alpha)}{s^{4}+(a_{1}+\beta)s^{3}+(a_{1}\beta+a_{2}+k)s^{2}+(a_{2}\beta+a_{3}+\alpha k)s+a_{3}\beta}.\end{equation}
+
+
+
+\paragraph{Routh\textendash{}Hurwitz stability criterion}
+
+%
+\begin{table}[!tbh]
+\caption{Routh\textendash{}Hurwitz stability criterion for Lead (Lag) compensator}
+
+
+\begin{centering}
+\begin{tabular}{lll}
+\toprule 
+1 & $a_{1}\beta+a_{2}+k$ & $a_{3}\beta$\tabularnewline
+\addlinespace
+$a_{1}+\beta$ & $a_{2}\beta+a_{3}+\alpha k$ & $0$\tabularnewline
+\addlinespace
+$q_{1}$ & $a_{3}\beta$ & \tabularnewline
+\addlinespace
+$q_{2}$ & 0 & \tabularnewline
+\addlinespace
+$a_{3}\beta$ &  & \tabularnewline
+\bottomrule
+\addlinespace
+\end{tabular}
+\par\end{centering}
+
+%
+\end{table}
+Since $a_{3}<0$ and $\beta>0$, $a_{3}\beta<0$. This implies that
+there is at least one pole (positive) located in the right half-plane.
+
+
+\subsubsection{Lead-lag compensator}
+
+Similarly, it is impossible to make the system stable using the lead-lag
+compensator. This is because the last term of the dominator of the
+transfer function of the close-loop system is negtive (this implies
+that there is at least one positive pole).
+
+
+\subsubsection{PID}
+
+PID controller can do the job
+
+
+\subsection{Cart Motion Control}
+
+
+\subsubsection{Identification}
+\begin{enumerate}
+\item Open \emph{Pendulum\_Identification.mdl.}
+\item Click \emph{Tools$\rightarrow$Control Design$\rightarrow$Linear
+Analysis}.
+\item In the tab \emph{Linearization}, click the button \emph{Linearize
+Model}.
+\item Click \emph{Model} in the left panel to check the linearization result.
+\item Click the button \emph{Export to Workspace} to export the model to
+workspace.
+\end{enumerate}
+
+\subsubsection{PID controller design}
+\begin{enumerate}
+\item Open \emph{CartControl.mdl}.
+\item Build the model
+\item Adjust the parameters.
+\end{enumerate}
 
 \section{Some Keywords}
 \begin{itemize}

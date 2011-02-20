@@ -65,7 +65,7 @@
 \usepackage{pgfplots}
 \input{defpgfexternal.tex}
 
-\setpgfexternalmainfile{NotesonProjectsPartI}
+\setpgfexternalmainfile{NotesonProjectsPartII}
 
 \usepackage[style=altlong4colheader,toc]{glossaries}
 
@@ -76,7 +76,7 @@
 
 \renewcommand*{\glsgroupskip}{}
 
-\loadglsentries{NotesonProjectsPartI-Znotation}
+\loadglsentries{NotesonProjectsPartII-Znotation}
 
 
 %\renewcommand{\jot}{2\jot}
@@ -132,7 +132,7 @@
 \begin_body
 
 \begin_layout Title
-Notes on Inverted Pendulum System Laboratory
+Notes on Magnetic Levitation System Laboratory
 \end_layout
 
 \begin_layout Author
@@ -140,7 +140,7 @@ Dazhi Jiang
 \end_layout
 
 \begin_layout RunTitle
-Notes on Inverted Pendulum System Laboratory
+Notes on Magnetic Levitation System Laboratory
 \end_layout
 
 \begin_layout RunAuthor
@@ -152,7 +152,7 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-This document includes some notes on the inverted pendulum system laboratory
+This document includes some notes on the magnetic levitation system laboratory
  (ACS220).
 \end_layout
 
@@ -161,309 +161,7 @@ Notes
 \end_layout
 
 \begin_layout Subsection
-The model of inverted pendulum system
-\end_layout
-
-\begin_layout Subsubsection
-Schematic diagram
-\end_layout
-
-\begin_layout Standard
-Figure
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:InvertedPendulum"
-
-\end_inset
-
- shows a schematic drawing of the inverted pendulum system.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-placement !ht
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-tikzstyle{block} = [draw, fill=blue!20, rectangle,      minimum height=3em,
- minimum width=6em] 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm] 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-tikzstyle{input} = [coordinate] 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-tikzstyle{output} = [coordinate] 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% The block diagram code is probably more verbose than necessary 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}[auto, node distance=2cm,>=latex', every node/.style={font=
-\backslash
-small}]
-\end_layout
-
-\begin_layout Plain Layout
-
-    % We start by placing the blocks
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-node [input, name=input] {};
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-node [sum, right of=input] (sum) {};
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-% node [block, right of=sum] (controller) {Controller};
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-node [block, right of=sum] (system) {$
-\backslash
-dfrac{K}{1+sT}$};
-\end_layout
-
-\begin_layout Plain Layout
-
-    % We draw an edge between the controller and system block to
-\end_layout
-
-\begin_layout Plain Layout
-
-    % calculate the coordinate u.
- We need it to place the measurement block.
-\end_layout
-
-\begin_layout Plain Layout
-
-    % 
-\backslash
-draw [->] (controller) -- node[name=u] {$u$} (system);
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-node [output, right of=system] (output) {};
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-node [coordinate, below={1em of system}] (measurements) {};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    % Once the nodes are placed, connecting them is easy.
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-draw [draw,->] (input) -- node {$r$} (sum);
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-draw [->] (sum) -- node {$e$} (system);
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-draw [->] (system) -- node [name=y] {$y$}(output);
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-draw (y) |- (measurements);
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-draw [->] (measurements) -| node[pos=0.95] {$-$} (sum); 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-The simplified block diagram of control system for armature controlled motor
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:ICAvsMICAcorr"
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement !ht
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-tikzset{external/export=true}
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-tikzsetnextfilename{InvertedPendulum}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-input{Fig/Src/InvertedPendulum.tikz}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption
-
-\begin_layout Plain Layout
-A schematic diagram of the inverted pendulum system.
- 
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:InvertedPendulum"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+The model of magnetic levitation system
 \end_layout
 
 \begin_layout Subsubsection
@@ -480,7 +178,7 @@ The motion of the cart in the horizontal direction (
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-M\ddot{x}+b\dot{x}+\vv{N}=\vv{F},\label{eq:CartMotion}\end{equation}
+\label{eq:CartMotion}\end{equation}
 
 \end_inset
 
