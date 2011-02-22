@@ -1,0 +1,240 @@
+#LyX 1.6.9 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass DJespcrc1
+\begin_preamble
+%\input{DJcommonpk-phd1-pgf-en}
+%\input{DJcommonpk-pgf-en}
+
+% Definition of command \djphd
+\input{DJ4DJespcrc}
+
+% Commonly used mathematical macro
+%\input{DJcommonmath}
+% identification
+%\readRCS $Id: ModifiedFICA.tex,v 0.01 2009/06/15 15:20:11 Exp $
+%\ProvidesFile{ModifiedFICA.tex}[\filedate \space v\fileversion
+%     \space DJElsevier 1-column CRC Author Instructions]
+\readRCS $Id: DJACS220Notes.tex,v 0.01 2010/02/20 15:20:11 Exp $
+\ProvidesFile{DJACS220Notes.tex}[\filedate \space v\fileversion
+     \space DJElsevier 1-column CRC Author Instructions]
+
+
+
+% This package is not declared in DJespcrc1.sty
+%\usepackage[numbers, sort&compress]{natbib}
+% pdfsync.sty allows one to synchronize between LaTeX source and pdf output
+%\usepackage{pdfsync}
+
+%% !!! Comment
+%%     The package 'xcolor' has to be loaded before the package 'pstricks'.
+\usepackage[svgnames]{xcolor}
+
+
+
+% change this to the following line for use with LaTeX2.09
+% \documentstyle[12pt,twoside,fleqn,espcrc1]{article}
+% if you want to include PostScript figures
+%\usepackage{graphicx}
+% if you have landscape tables
+%\usepackage[figuresright]{rotating}
+% Put all the style files and packages you want here
+% Load DJ-defined report packages
+\input{DJReportLoadAll}
+
+%\usepackage{amsmath}
+
+\usepackage{mathtools}
+
+\usepackage{siunitx}
+
+% \usepackage{djschemabloc}
+
+
+\usetikzlibrary{circuits,%
+    intersections,%
+    scopes, arrows, fadings, patterns,%
+    decorations.pathreplacing,%
+    decorations.pathmorphing,%
+    positioning,
+    shadows,
+}
+
+
+\usepackage{pgfplots}
+\input{defpgfexternal.tex}
+
+\setpgfexternalmainfile{NotesonProjectsPartIII}
+
+\usepackage[style=altlong4colheader,toc]{glossaries}
+
+\setlength{\glsdescwidth}{0.5\textwidth}
+\setlength{\glspagelistwidth}{0.15\textwidth}
+
+\makeglossaries
+
+\renewcommand*{\glsgroupskip}{}
+
+\loadglsentries{NotesonProjectsPartIII-Znotation}
+
+
+%\renewcommand{\jot}{2\jot}
+
+% For command \textdegree, \textcelsius, ect.
+
+\DeclareMathOperator \J {J}
+
+\ifpdf
+\graphicspath{{./}{./Fig/pdf/}{./Fig/}}
+\else
+\graphicspath{{./}{./Fig/eps/}{./Fig/}}
+\fi
+\end_preamble
+\use_default_options true
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement !tbh
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Notes on Twin Rotor MIMO System Laboratory
+\end_layout
+
+\begin_layout Author
+Dazhi Jiang
+\end_layout
+
+\begin_layout RunTitle
+Notes on Twin Rotor MIMO System Laboratory
+\end_layout
+
+\begin_layout RunAuthor
+Dazhi Jiang
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+This document includes some notes on the twin rotor MIMO system laboratory
+ (ACS220).
+\end_layout
+
+\begin_layout Section
+Notes
+\end_layout
+
+\begin_layout Subsection
+The helicopter tail
+\end_layout
+
+\begin_layout Subsubsection
+Modelling using Frequency Response Data Method
+\end_layout
+
+\begin_layout Subsubsection
+Stability analysis
+\end_layout
+
+\begin_layout Subsubsection
+Controller design
+\end_layout
+
+\begin_layout Subsubsection
+PID
+\end_layout
+
+\begin_layout Section
+Some Keywords
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.1} % Vertical space between table lines
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand*{
+\backslash
+symbolname}{Value}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+printglossary[title=List of Notations, toctitle=List of Notations]
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Tmp
+\end_layout
+
+\end_body
+\end_document

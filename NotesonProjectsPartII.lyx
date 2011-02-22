@@ -169,30 +169,25 @@ Equations of motion
 \end_layout
 
 \begin_layout Standard
-The motion of the cart in the horizontal direction (
-\begin_inset Formula $x$
-\end_inset
-
--direction) is described by
-\end_layout
-
-\begin_layout Standard
+The dynamical equation of the system is given by
 \begin_inset Formula \begin{equation}
-\label{eq:CartMotion}\end{equation}
+m\ddot{h}=mg-f,\label{eq:maglev-model}\end{equation}
 
 \end_inset
 
 where 
-\begin_inset Formula $\vv{N}$
+\begin_inset Formula $f$
 \end_inset
 
- is an unknown reaction force applied by the pendulum in the 
-\begin_inset Formula $x$
-\end_inset
-
--direction, which is given by
+ denotes the electromagnetic force and given by
 \begin_inset Formula \begin{equation}
-\vv{N}=m\ddot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^{2}\sin\theta.\label{eq:ReactionForcex}\end{equation}
+f=k_{m}\frac{i^{2}}{h^{2}}.\label{eq:force}\end{equation}
+
+\end_inset
+
+Thus, we have
+\begin_inset Formula \begin{equation}
+m\ddot{h}=mg-k_{m}\frac{i^{2}}{h^{2}}.\end{equation}
 
 \end_inset
 
@@ -200,41 +195,50 @@ where
 \end_layout
 
 \begin_layout Standard
-The motion of the pendulum is described by
-\begin_inset Formula \begin{equation}
-(I+ml^{2})\ddot{\theta}+mgl\sin\theta=-ml\ddot{x}\cos\theta.\label{eq:PendulumMotion}\end{equation}
-
+Note that at the steady-state 
+\begin_inset Formula $\ddot{h}=0$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-By combining Equations
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:CartMotion"
-
+.
+ Hence, 
+\begin_inset Formula $mg-k_{m}\frac{i_{0}^{2}}{h_{0}^{2}}=0$
 \end_inset
 
  and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:ReactionForcex"
-
-\end_inset
-
-, 
-\begin_inset Formula $\vv{N}$
-\end_inset
-
- can be eliminated to yield
 \begin_inset Formula \begin{equation}
-(M+m)\ddot{x}+b\dot{x}+ml\ddot{\theta}\cos\theta-ml\dot{\theta}^{2}\sin\theta=\vv{F}.\label{eq:CartMotionNoN}\end{equation}
+i_{0}=\sqrt{\frac{mg}{k_{m}}}h_{0},\label{eq:steadystateio}\end{equation}
+
+\end_inset
+
+or 
+\begin_inset Formula \begin{equation}
+h_{0}=\sqrt{\frac{k_{m}}{mg}}i_{0},\label{eq:steadystateoi}\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula $h_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $i_{0}$
+\end_inset
+
+ are the steady-state values.
+\end_layout
+
+\begin_layout Standard
+Let
+\begin_inset Formula \begin{eqnarray}
+x_{1} & = & h-h_{0},\\
+x_{2} & = & \dot{x}_{1}.\end{eqnarray}
+
+\end_inset
+
+and we have
+\begin_inset Formula \begin{eqnarray}
+\dot{x}_{1} & = & x_{2},\\
+\dot{x}_{2} & = & g-\frac{k_{m}(i_{\Delta}+i_{0})^{2}}{m(x_{1}+h_{0})^{2}}.\end{eqnarray}
 
 \end_inset
 
@@ -246,542 +250,258 @@ Linearisation
 \end_layout
 
 \begin_layout Standard
-Equations
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:PendulumMotion"
+By linearising the system function around the point
+\begin_inset Formula \begin{eqnarray}
+x_{1} & = & 0,\\
+x_{2} & = & 0,\\
+i_{\Delta} & = & 0,\end{eqnarray}
 
 \end_inset
 
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:CartMotionNoN"
+ we have 
+\begin_inset Formula \begin{eqnarray}
+\dot{x}_{1} & = & x_{2},\\
+\dot{x}_{2} & = & \frac{2k_{m}(i_{\Delta}+i_{0})^{2}}{m(x_{1}+h_{0})^{3}}\Bigg|_{x_{1}=0,\, x_{2}=0,\, i_{\Delta}=0}\cdot x_{1}-\frac{2k_{m}(i_{\Delta}+i_{0})}{m(x_{1}+h_{0})^{2}}\Bigg|_{x_{1}=0,\, x_{2}=0,\, i_{\Delta}=0}\cdot i_{\Delta}.\end{eqnarray}
 
 \end_inset
 
- are the nonlinear differential equations and can be linearised around their
- equilibrium points.
- Assume 
-\begin_inset Formula $\theta=\pi+\theta'$
-\end_inset
-
- around the unstable equilibrium of the system (
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ie
-\end_layout
+Simplifying the equation gives 
+\begin_inset Formula \begin{eqnarray}
+\dot{x}_{1} & = & x_{2},\\
+\dot{x}_{2} & = & \frac{2k_{m}i_{0}^{2}}{mh_{0}^{3}}\cdot x_{1}-\frac{2k_{m}i_{0}}{mh_{0}^{2}}\cdot i_{\Delta}.\end{eqnarray}
 
 \end_inset
 
- 
-\begin_inset Formula $\theta\approx\pi$
-\end_inset
 
- or 
-\begin_inset Formula $\theta'\approx0$
-\end_inset
-
-), where 
-\begin_inset Formula $\theta'$
-\end_inset
-
- represents motion from the vertical upward direction.
- Let 
-\begin_inset Formula $\cos\theta\approx-1$
-\end_inset
-
-, 
-\begin_inset Formula $\sin\theta\approx-\theta'$
-\end_inset
-
-, and 
-\begin_inset Formula $\dot{\theta}^{2}\approx0$
-\end_inset
-
-.
- Thus, Equations
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:PendulumMotion"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:CartMotionNoN"
-
-\end_inset
-
- are approximated by
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula \begin{eqnarray}
-(I+ml^{2})\ddot{\theta'}-mgl\theta' & = & ml\ddot{x},\label{eq:LinearPM}\\
-(M+m)\ddot{x}+b\dot{x}-ml\ddot{\theta'} & = & \vv{F}.\label{eq:LinearCM}\end{eqnarray}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Laplace transform
-\end_layout
-
-\begin_layout Standard
-By applying the Laplace transform to both sides of the Equations
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:LinearPM"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:LinearCM"
-
-\end_inset
-
- , we obtain
-\begin_inset Formula \begin{eqnarray}
-(I+ml^{2})s^{2}\Theta(s)-mgl\Theta(s) & = & mls^{2}X(s),\\
-{}[(M+m)s^{2}+bs]X(s)-mls^{2}\Theta(s) & = & F(s),\end{eqnarray}
-
-\end_inset
-
-where assume all the initial conditions to be zero.
- Thus the transfer function from the control input, 
-\begin_inset Formula $\vv{F}$
-\end_inset
-
-, to the output, 
-\begin_inset Formula $\theta'$
-\end_inset
-
- is given by
-\begin_inset Formula \begin{eqnarray}
-\frac{\Theta'(s)}{F(s)} & = & \frac{mls^{2}}{[(M+m)(I+ml^{2})-m^{2}l^{2}]s^{4}+b(I+ml^{2})s^{3}-mgl(M+m)s^{2}-bmgls}\\
- & = & \frac{mls}{[(M+m)(I+ml^{2})-m^{2}l^{2}]s^{3}+b(I+ml^{2})s^{2}-mgl(M+m)s-bmgl}\\
- & = & \frac{\dfrac{ml}{C}s}{s^{3}+\dfrac{b(I+ml^{2})}{C}s^{2}-\dfrac{mgl(M+m)}{C}s-\dfrac{bmgl}{C}},\end{eqnarray}
+Finally, we obtain the 
+\emph on
+state-space representation
+\emph default
+ of the system 
+\begin_inset Formula \begin{equation}
+\dot{\bm{x}}=A\bm{x}+Bi_{\Delta}\end{equation}
 
 \end_inset
 
  where 
-\begin_inset Formula \begin{equation}
-C=(M+m)(I+ml^{2})-m^{2}l^{2}.\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Stability analysis
-\end_layout
-
-\begin_layout Standard
-Substituting the value of given variables, the transfer function becomes
-\begin_inset Formula \begin{equation}
-G(s)=\frac{\Theta'(s)}{F(s)}=\frac{0.8045s}{s^{3}+1.726s^{2}-10.58s-18}.\end{equation}
-
-\end_inset
-
-Covert it to 
-\emph on
-zeor-pole-gain
-\emph default
- form,
-\begin_inset Formula \begin{equation}
-G(s)=\frac{\Theta'(s)}{F(s)}=\frac{0.8045s}{(s-3.244)(s+3.277)(s+1.694)}.\end{equation}
-
-\end_inset
-
-Clearly, the system is unstable.
-\end_layout
-
-\begin_layout Subsubsection
-Lead and Lag compensator
-\end_layout
-
-\begin_layout Standard
-Assume the transfer function of lead (lag) compensator is
-\begin_inset Formula \[
-C(s)=\frac{s+\alpha}{s+\beta},\]
-
-\end_inset
-
-and for later convenience the system transfer function is
-\begin_inset Formula \begin{equation}
-G(s)=\frac{\Theta'(s)}{F(s)}=\frac{ks}{s^{3}+a_{1}s+a_{2}s-a_{3}}.\end{equation}
-
-\end_inset
-
-Thus the close-loop transfer function can be calculated by
-\begin_inset Formula \begin{equation}
-G_{c}=\frac{ks(s+\alpha)}{s^{4}+(a_{1}+\beta)s^{3}+(a_{1}\beta+a_{2}+k)s^{2}+(a_{2}\beta+a_{3}+\alpha k)s+a_{3}\beta}.\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-Routh–Hurwitz stability criterion
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Routh–Hurwitz stability criterion for Lead (Lag) compensator
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="3">
-<features booktabs="true">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<row interlinespace="default">
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{1}\beta+a_{2}+k$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{3}\beta$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row interlinespace="default">
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{1}+\beta$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{2}\beta+a_{3}+\alpha k$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row interlinespace="default">
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $q_{1}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{3}\beta$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row interlinespace="default">
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $q_{2}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row interlinespace="default">
-<cell alignment="left" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{3}\beta$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-Since 
-\begin_inset Formula $a_{3}<0$
+\begin_inset Formula $\bm{x}=(x_{1},\, x_{2})^{T}$
 \end_inset
 
  and 
-\begin_inset Formula $\beta>0$
+\begin_inset Formula \begin{eqnarray}
+A & = & \left[\begin{array}{rr}
+0 & 1\\
+\frac{2k_{m}i_{0}^{2}}{mh_{0}^{3}} & 0\end{array}\right],\\
+B & = & \left[\begin{array}{c}
+0\\
+-\frac{2k_{m}i_{0}}{mh_{0}^{2}}\end{array}\right].\end{eqnarray}
+
 \end_inset
 
-, 
-\begin_inset Formula $a_{3}\beta<0$
+ Note that Equation
+\begin_inset space ~
 \end_inset
 
-.
- This implies that there is at least one pole (positive) located in the
- right half-plane.
-\end_layout
 
-\begin_layout Subsubsection
-Lead-lag compensator
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:steadystateio"
+
+\end_inset
+
+ (or Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:steadystateoi"
+
+\end_inset
+
+), we have 
+\begin_inset Formula \begin{eqnarray}
+A & = & \left[\begin{array}{rr}
+0 & 1\\
+\frac{2g}{h_{0}} & 0\end{array}\right],\\
+B & = & \left[\begin{array}{c}
+0\\
+-\frac{2g}{i_{0}}\end{array}\right].\end{eqnarray}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Similarly, it is impossible to make the system stable using the lead-lag
- compensator.
- This is because the last term of the dominator of the transfer function
- of the close-loop system is negtive (this implies that there is at least
- one positive pole).
+The transfer function of the system from the input 
+\begin_inset Formula $u(t)=i_{\Delta}(t)$
+\end_inset
+
+ to the output 
+\begin_inset Formula $y(t)=x_{1}(t)$
+\end_inset
+
+ is
+\begin_inset Formula \begin{equation}
+G(s)=\frac{Y(s)}{U(s)}=C(sI-A)^{-1}B+D,\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula $C=\left[\begin{array}{cc}
+1 & 0\end{array}\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $D=0$
+\end_inset
+
+.
+ The 
+\emph on
+transfer function
+\emph default
+ is given by 
+\begin_inset Formula \begin{eqnarray}
+G(s) & = & \left[\begin{array}{cc}
+1 & 0\end{array}\right]\left[\begin{array}{rr}
+s & -1\\
+-\frac{2g}{h_{0}} & s\end{array}\right]^{-1}\left[\begin{array}{c}
+0\\
+-\frac{2g}{i_{0}}\end{array}\right]\nonumber \\
+ & = & \frac{1}{s^{2}-\frac{2g}{h_{0}}}\left[\begin{array}{cc}
+1 & 0\end{array}\right]\left[\begin{array}{rr}
+s & 1\\
+\frac{2g}{h_{0}} & s\end{array}\right]\left[\begin{array}{c}
+0\\
+-\frac{2g}{i_{0}}\end{array}\right]\nonumber \\
+ & = & \frac{-\frac{2g}{i_{0}}}{s^{2}-\frac{2g}{h_{0}}}\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Stability Analysis
+\end_layout
+
+\begin_layout Standard
+Obviously the open-loop system is unstable due to the positive pole in the
+ transfer function
+\end_layout
+
+\begin_layout Subsection
+Controller Design
 \end_layout
 
 \begin_layout Subsubsection
 PID
 \end_layout
 
-\begin_layout Standard
-PID controller can do the job
-\end_layout
-
-\begin_layout Subsection
-Cart Motion Control
-\end_layout
-
-\begin_layout Subsubsection
-Identification
-\end_layout
-
 \begin_layout Enumerate
 Open 
 \emph on
-Pendulum_Identification.mdl.
-\end_layout
-
-\begin_layout Enumerate
-Click 
-\emph on
-Tools
-\begin_inset Formula $\rightarrow$
-\end_inset
-
-Control Design
-\begin_inset Formula $\rightarrow$
-\end_inset
-
-Linear Analysis
+PID_real_time.mdl
 \emph default
 .
-\end_layout
-
-\begin_layout Enumerate
-In the tab 
-\emph on
-Linearization
-\emph default
-, click the button 
-\emph on
-Linearize Model
-\emph default
-.
-\end_layout
-
-\begin_layout Enumerate
-Click 
-\emph on
-Model
-\emph default
- in the left panel to check the linearization result.
-\end_layout
-
-\begin_layout Enumerate
-Click the button 
-\emph on
-Export to Workspace
-\emph default
- to export the model to workspace.
-\end_layout
-
-\begin_layout Subsubsection
-PID controller design
-\end_layout
-
-\begin_layout Enumerate
-Open 
-\emph on
-CartControl.mdl
-\emph default
-.
-\end_layout
-
-\begin_layout Enumerate
-Build the model
 \end_layout
 
 \begin_layout Enumerate
 Adjust the parameters.
 \end_layout
 
-\begin_layout Section
-Some Keywords
+\begin_layout Enumerate
+Build the model and run.
+ if any error occurs like, 
+\begin_inset Quotes eld
+\end_inset
+
+Error occurred while executing External Mode MEX-file 'rtwinext': External
+ mode package buffer too small.
+\begin_inset Quotes erd
+\end_inset
+
+, you need reconnect and run.
+ In addition, you need lift the ball to the initial position so that it
+ can keep the position.
 \end_layout
 
-\begin_layout Itemize
-inverted pendulum
+\begin_layout Subsubsection
+Linear quadratic regulator method
+\end_layout
+
+\begin_layout Paragraph
+Offiline analysis
+\end_layout
+
+\begin_layout Enumerate
+Open 
+\emph on
+LQR_offline.mdl
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+Adjust the parameters.
+\end_layout
+
+\begin_layout Enumerate
+Build the model and run.
+ if any error occurs like, 
+\begin_inset Quotes eld
+\end_inset
+
+Error occurred while executing External Mode MEX-file 'rtwinext': External
+ mode package buffer too small.
+\begin_inset Quotes erd
+\end_inset
+
+, you need reconnect and run.
+ In addition, you need lift the ball to the initial position so that it
+ can keep the position.
+\end_layout
+
+\begin_layout Paragraph
+Realtime control
+\end_layout
+
+\begin_layout Enumerate
+Open 
+\emph on
+LQR_real_time.mdl
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+Adjust the parameters.
+\end_layout
+
+\begin_layout Enumerate
+Build the model and run.
+ if any error occurs like, 
+\begin_inset Quotes eld
+\end_inset
+
+Error occurred while executing External Mode MEX-file 'rtwinext': External
+ mode package buffer too small.
+\begin_inset Quotes erd
+\end_inset
+
+, you need reconnect and run.
+ In addition, you need lift the ball to the initial position so that it
+ can keep the position.
+\end_layout
+
+\begin_layout Section
+Some Keywords
 \end_layout
 
 \begin_layout Section
@@ -834,21 +554,6 @@ printglossary[title=List of Notations, toctitle=List of Notations]
 
 \begin_layout Section*
 Tmp
-\end_layout
-
-\begin_layout Standard
-A bug of asmmath, can be fixed by mathtools
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula \[
-\begin{gathered}{}[p]=100\\
-{}[v]=200\end{gathered}
-\]
-
-\end_inset
-
-
 \end_layout
 
 \end_body
