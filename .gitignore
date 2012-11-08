@@ -21,3 +21,5 @@ Code/*.*
 !Code/*.m
 
 Ref/Inverted\ Pendulum
+Ref/Maglev
+Ref/TRMS

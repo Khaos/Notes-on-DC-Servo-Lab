@@ -180,6 +180,18 @@ Controller design
 PID
 \end_layout
 
+\begin_layout Standard
+Parameters are
+\begin_inset Formula \begin{eqnarray}
+k_{p} & =\\
+k_{i} & =\\
+k_{d} & =\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Some Keywords
 \end_layout

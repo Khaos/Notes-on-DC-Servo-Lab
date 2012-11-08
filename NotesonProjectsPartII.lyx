@@ -1,4 +1,4 @@
-#LyX 1.6.9 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.10 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -42,6 +42,7 @@
 % Put all the style files and packages you want here
 % Load DJ-defined report packages
 \input{DJReportLoadAll}
+\usepackage{pst-pdf}
 
 %\usepackage{amsmath}
 
@@ -380,7 +381,29 @@ s & 1\\
 \frac{2g}{h_{0}} & s\end{array}\right]\left[\begin{array}{c}
 0\\
 -\frac{2g}{i_{0}}\end{array}\right]\nonumber \\
- & = & \frac{-\frac{2g}{i_{0}}}{s^{2}-\frac{2g}{h_{0}}}\end{eqnarray}
+ & = & \frac{-\frac{2g}{i_{0}}}{s^{2}-\frac{2g}{h_{0}}}=\frac{-\frac{2mg}{i_{0}}}{ms^{2}-\frac{2mg}{h_{0}}}\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substituting 
+\begin_inset Formula $g=9.80665$
+\end_inset
+
+, 
+\begin_inset Formula $i_{0}=0.75$
+\end_inset
+
+ and 
+\begin_inset Formula $h_{0}=15\times10^{-3}$
+\end_inset
+
+ into the above equation, we obtain
+\begin_inset Formula \begin{equation}
+G(s)=\frac{-26.1511}{s^{2}-1307.6}=\frac{-0.5544}{0.0212s^{2}-27.7201}\end{equation}
 
 \end_inset
 

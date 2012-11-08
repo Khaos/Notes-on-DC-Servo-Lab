@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Makefile</string>
+	<string>Fig/Src/InvertedPendulum.tikz</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -15,8 +15,6 @@
 			<string>Alg</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>Code</string>
 			<key>regexFolderFilter</key>
@@ -25,6 +23,8 @@
 			<string>Code</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>Fig</string>
 			<key>regexFolderFilter</key>
@@ -96,19 +96,21 @@
 			<key>filename</key>
 			<string>Makefile</string>
 			<key>lastUsed</key>
-			<date>2011-02-20T15:49:27Z</date>
+			<date>2011-02-21T17:14:11Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>.gitignore</string>
 			<key>lastUsed</key>
-			<date>2011-02-20T15:32:20Z</date>
+			<date>2011-03-03T09:12:05Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>Fig/Src/InvertedPendulum.tikz</string>
 			<key>lastUsed</key>
-			<date>2011-02-19T10:25:23Z</date>
+			<date>2011-03-04T09:53:36Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -128,7 +130,25 @@
 			<key>filename</key>
 			<string>NotesonProjectsPartI.tex</string>
 			<key>lastUsed</key>
-			<date>2011-02-20T15:44:34Z</date>
+			<date>2011-02-28T09:10:22Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>NotesonProjectsPartI.tex</string>
+			<key>lastUsed</key>
+			<date>2011-02-28T09:10:19Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>NotesonProjectsPartII.tex</string>
+			<key>lastUsed</key>
+			<date>2011-02-24T18:49:28Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>NotesonProjectsPartII.tex</string>
+			<key>lastUsed</key>
+			<date>2011-02-24T18:49:38Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -140,58 +160,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>8</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>Fig/Src/InversePendulum.tex</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>58</integer>
-				<key>line</key>
-				<integer>136</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>121</integer>
 		</dict>
 		<key>Fig/Src/InvertedPendulum.tikz</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>63</integer>
+				<integer>23</integer>
 				<key>line</key>
-				<integer>147</integer>
+				<integer>19</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>73</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>4</integer>
-				<key>line</key>
-				<integer>147</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>63</integer>
-				<key>line</key>
-				<integer>147</integer>
-			</dict>
+			<integer>154</integer>
 		</dict>
 		<key>Makefile</key>
 		<dict>
@@ -206,6 +196,34 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>3</integer>
+		</dict>
+		<key>NotesonProjectsPartI.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>25</integer>
+				<key>line</key>
+				<integer>141</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>127</integer>
+		</dict>
+		<key>NotesonProjectsPartII.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>238</integer>
 		</dict>
 		<key>defpgfexternal.tex</key>
 		<dict>
@@ -225,11 +243,13 @@
 	<key>openDocuments</key>
 	<array>
 		<string>.gitignore</string>
+		<string>Fig/Src/InvertedPendulum.tikz</string>
 		<string>Makefile</string>
+		<string>NotesonProjectsPartI.tex</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
 	<key>windowFrame</key>
-	<string>{{226, 10}, {1024, 768}}</string>
+	<string>{{256, 10}, {1024, 768}}</string>
 </dict>
 </plist>
